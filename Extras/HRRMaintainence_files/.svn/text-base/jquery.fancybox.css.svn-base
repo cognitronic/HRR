@@ -1,0 +1,117 @@
+.fancybox-tmp IFRAME {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+.fancybox-tmp OBJECT {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; VERTICAL-ALIGN: top; PADDING-TOP: 0px
+}
+.fancybox-wrap {
+	Z-INDEX: 8020; POSITION: absolute; TOP: 0px; LEFT: 0px
+}
+.fancybox-skin {
+	POSITION: relative; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: #f9f9f9; COLOR: #444; PADDING-TOP: 0px; border-radius: 4px; -webkit-border-radius: 4px; text-shadow: none; -moz-border-radius: 4px
+}
+.fancybox-opened {
+	Z-INDEX: 8030
+}
+.fancybox-opened .fancybox-skin {
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5)
+}
+.fancybox-outer {
+	POSITION: relative; PADDING-BOTTOM: 0px; MARGIN: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.fancybox-inner {
+	POSITION: relative; PADDING-BOTTOM: 0px; MARGIN: 0px; OUTLINE-STYLE: none; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+.fancybox-inner {
+	OVERFLOW: hidden
+}
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch
+}
+.fancybox-error {
+	PADDING-BOTTOM: 10px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #444; PADDING-TOP: 10px
+}
+.fancybox-image {
+	PADDING-BOTTOM: 0px; BORDER-RIGHT-WIDTH: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; DISPLAY: block; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 100%; VERTICAL-ALIGN: top; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 0px
+}
+.fancybox-iframe {
+	PADDING-BOTTOM: 0px; BORDER-RIGHT-WIDTH: 0px; MARGIN: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; DISPLAY: block; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; HEIGHT: 100%; VERTICAL-ALIGN: top; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 0px
+}
+.fancybox-image {
+	MAX-WIDTH: 100%; MAX-HEIGHT: 100%
+}
+#fancybox-loading {
+	BACKGROUND-IMAGE: url(fancybox_sprite.png)
+}
+.fancybox-close {
+	BACKGROUND-IMAGE: url(fancybox_sprite.png)
+}
+.fancybox-prev SPAN {
+	BACKGROUND-IMAGE: url(fancybox_sprite.png)
+}
+.fancybox-next SPAN {
+	BACKGROUND-IMAGE: url(fancybox_sprite.png)
+}
+#fancybox-loading {
+	Z-INDEX: 8020; POSITION: fixed; MARGIN-TOP: -22px; BACKGROUND-POSITION: 0px -108px; MARGIN-LEFT: -22px; CURSOR: pointer; TOP: 50%; LEFT: 50%; opacity: 0.8
+}
+#fancybox-loading DIV {
+	WIDTH: 44px; BACKGROUND: url(fancybox_loading.gif) no-repeat center center; HEIGHT: 44px
+}
+.fancybox-close {
+	Z-INDEX: 8040; POSITION: absolute; WIDTH: 36px; HEIGHT: 36px; CURSOR: pointer; RIGHT: -18px; TOP: -18px
+}
+.fancybox-nav {
+	Z-INDEX: 8040; POSITION: absolute; WIDTH: 40%; BACKGROUND: url(blank.gif); HEIGHT: 100%; CURSOR: pointer; TOP: 0px; -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+.fancybox-prev {
+	LEFT: 0px
+}
+.fancybox-next {
+	RIGHT: 0px
+}
+.fancybox-nav SPAN {
+	Z-INDEX: 8040; POSITION: absolute; MARGIN-TOP: -18px; WIDTH: 36px; HEIGHT: 34px; VISIBILITY: hidden; CURSOR: pointer; TOP: 50%
+}
+.fancybox-prev SPAN {
+	BACKGROUND-POSITION: 0px -36px; LEFT: 20px
+}
+.fancybox-next SPAN {
+	BACKGROUND-POSITION: 0px -72px; RIGHT: 20px
+}
+.fancybox-nav:hover SPAN {
+	VISIBILITY: visible
+}
+.fancybox-tmp {
+	POSITION: absolute; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; VISIBILITY: hidden; OVERFLOW: visible; PADDING-TOP: 0px; TOP: -9999px; LEFT: -9999px
+}
+#fancybox-overlay {
+	Z-INDEX: 8010; POSITION: absolute; DISPLAY: none; BACKGROUND: #000; OVERFLOW: hidden; TOP: 0px; LEFT: 0px
+}
+.overlay-fixed#fancybox-overlay {
+	POSITION: fixed; BOTTOM: 0px; RIGHT: 0px
+}
+.fancybox-title {
+	Z-INDEX: 8050; POSITION: relative; VISIBILITY: hidden; COLOR: #aaa; text-shadow: none
+}
+.fancybox-opened .fancybox-title {
+	VISIBILITY: visible
+}
+.fancybox-title-float-wrap {
+	Z-INDEX: 8030; POSITION: absolute; TEXT-ALIGN: center; BOTTOM: 0px; MARGIN-BOTTOM: -35px; RIGHT: 50%
+}
+.fancybox-title-float-wrap .child {
+	PADDING-BOTTOM: 2px; LINE-HEIGHT: 24px; PADDING-LEFT: 20px; PADDING-RIGHT: 20px; DISPLAY: inline-block; WHITE-SPACE: nowrap; BACKGROUND: none transparent scroll repeat 0% 0%; COLOR: #fff; FONT-WEIGHT: bold; MARGIN-RIGHT: -100%; PADDING-TOP: 2px; border-radius: 15px; -webkit-border-radius: 15px; text-shadow: 0 1px 2px #222; -moz-border-radius: 15px
+}
+.fancybox-title-outside-wrap {
+	POSITION: relative; MARGIN-TOP: 10px
+}
+.fancybox-title-inside-wrap {
+	MARGIN-TOP: 10px
+}
+.fancybox-title-over-wrap {
+	POSITION: absolute; PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; BOTTOM: 0px; PADDING-RIGHT: 10px; BACKGROUND: #000; COLOR: #fff; PADDING-TOP: 10px; LEFT: 0px
+}
+#fancybox-buttons LI {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BACKGROUND: none transparent scroll repeat 0% 0%; PADDING-TOP: 0px
+}

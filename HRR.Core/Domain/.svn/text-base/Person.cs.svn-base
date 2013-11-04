@@ -1,0 +1,189 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HRR.Core.Domain.Interfaces;
+using IdeaSeed.Core;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+
+namespace HRR.Core.Domain
+{
+    [Serializable]
+    [DataContract]
+    public class Person : IPerson, IAutoSuggestRecipient
+    {
+        [DataMember]
+        public virtual int ID { get; set; }
+        [DataMember]
+        public virtual string Email { get; set; }
+        [DataMember]
+        public virtual string FirstName { get; set; }
+        [DataMember]
+        public virtual string LastName { get; set; }
+        [DataMember]
+        public virtual string Password { get; set; }
+        [DataMember]
+        public virtual string UserName { get; set; }
+        [DataMember]
+        public virtual string Title { get; set; }
+        [DataMember]
+        public virtual DateTime HireDate { get; set; }
+        [DataMember]
+        public virtual DateTime? TerminationDate { get; set; }
+        [DataMember]
+        public virtual int ManagerID { get; set; }
+        [DataMember]
+        public virtual int RoleID { get; set; }
+        [DataMember]
+        public virtual int DepartmentID { get; set; }
+        [DataMember]
+        public virtual string AvatarPath { get; set; }
+        [DataMember]
+        public virtual bool IsActive { get; set; }
+        [DataMember]
+        public virtual bool ReceiveCommentNotifications { get; set; }
+        [DataMember]
+        public virtual bool MarkedForDeletion { get; set; }
+        [DataMember]
+        public virtual int AccountID { get; set; }
+        [DataMember]
+        public virtual Account AccountRef { get; set; }
+        private IList<Person> _teammates = new List<Person>();
+        [DataMember]
+        public virtual IList<Person> Teammates { get { return _teammates; } set { _teammates = value; } }
+        [DataMember]
+        public virtual Person Manager { get; set; }
+        [DataMember]
+        public virtual DateTime Birthdate { get; set; }
+        [DataMember]
+        public virtual string FacebookPath { get; set; }
+        [DataMember]
+        public virtual string TwitterPath { get; set; }
+        [DataMember]
+        public virtual string LinkedInPath { get; set; }
+        [DataMember]
+        public virtual Department DepartmentRef { get; set; }
+        [DataMember]
+        public virtual bool IsManager { get; set; }
+        [DataMember]
+        public virtual string PasswordQuestion { get; set; }
+        [DataMember]
+        public virtual string PasswordAnswer { get; set; }
+        public virtual ItemType TypeOfItem { get; set; }
+        public virtual object ItemReference { get; set; }
+        [DataMember]
+        public virtual bool AcceptedTerms { get; set; }
+        [DataMember]
+        public virtual DateTime? DateAcceptedTerms { get; set; }
+        private IList<Review> _reviews = new List<Review>();
+        [DataMember]
+        public virtual IList<Review> Reviews { get { return _reviews; } set { _reviews = value; } }
+
+
+
+        private IList<Review> _currentreviews = new List<Review>();
+        [DataMember]
+        public virtual IList<Review> CurrentReviews { get { return _currentreviews; } set { _currentreviews = value; } }
+
+        private Review _currentreview = new Review();
+        [DataMember]
+        public virtual Review CurrentReview { get { return CurrentReviews.FirstOrDefault(); } set { _currentreview = value; } }
+
+        private IList<Document> _documents = new List<Document>();
+        [DataMember]
+        public virtual IList<Document> Documents { get { return _documents; } set { _documents = value; } }
+
+        private IList<Absence> _absences = new List<Absence>();
+        [DataMember]
+        public virtual IList<Absence> Absences { get { return _absences; } set { _absences = value; } }
+
+        private IList<Note> _notes = new List<Note>();
+        [DataMember]
+        public virtual IList<Note> Notes { get { return _notes; } set { _notes = value; } }
+
+        private IList<TeamMember> _memberships = new List<TeamMember>();
+        [DataMember]
+        public virtual IList<TeamMember> Memberships { get { return _memberships; } set { _memberships = value; } }
+        private IList<Goal> _goals = new List<Goal>();
+        [DataMember]
+        public virtual IList<Goal> Goals { get { return _goals; } set { _goals = value; } }
+
+        #region IBaseAuditable Members
+
+        [DataMember]
+        public virtual int ChangedBy
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public virtual DateTime DateCreated
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public virtual int EnteredBy
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public virtual DateTime LastUpdated
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
+        #region IBaseItem Members
+
+
+        [DataMember]
+        public virtual string Name
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+            set
+            {
+                
+            }
+        }
+
+        #endregion
+
+        public Person()
+        {
+            this.TypeOfItem = ItemType.PERSON;
+        }
+
+        public virtual string ToJSON()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        #region IAutoSuggestRecipient Members
+
+
+        public virtual string DepartmentName
+        {
+            get
+            {
+                return this.DepartmentRef.Name;
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        #endregion
+    }
+}

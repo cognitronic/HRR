@@ -1,0 +1,15 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="QuestionRatingScale" table="QuestionRatingScale">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="Title" />
+        <property name="AccountID" />
+        <bag name="Values" table="QuestionRatingScaleValue" generic="true" inverse="true" cascade="none">
+            <key column="QuestionRatingScaleID"/>
+            <one-to-many  class="HRR.Core.Domain.QuestionRatingScaleValue, HRR.Core" />
+        </bag>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,407 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HRR.Core.Domain.Interfaces;
+using HRR.Core.Domain;
+using HRR.Persistence.Repositories;
+using HRR.Services;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using Telerik.Web.UI;
+using Newtonsoft.Json;
+using HRR.Core.Security;
+using HRR.Core;
+
+namespace HRR.WCFServicesLib
+{
+    [ServiceContract(Namespace = "https://beta.hrriver.com/")]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, AddressFilterMode = AddressFilterMode.Any)]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class HRRServices
+    {
+        public Comment GetByID(int id)
+        {
+            return new CommentRepository().GetByID(id, false);
+        }
+
+        public IList<Comment> GetAll()
+        {
+            return new CommentRepository()
+                .GetAll()
+                .OrderBy(o => o.DateCreated)
+                .ToList<Comment>(); ;
+        }
+
+        public Comment Save(Comment item)
+        {
+            return new CommentRepository().SaveOrUpdate(item);
+        }
+
+        public void Delete(Comment item)
+        {
+            new CommentRepository().Delete(item);
+        }
+
+        public IList<Comment> GetByEnteredBy(int enteredby)
+        {
+            return new CommentRepository().GetByEnteredBy(enteredby);
+        }
+
+        public IList<Comment> GetByEnteredFor(int enteredfor)
+        {
+            return new CommentRepository().GetByEnteredFor(enteredfor);
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public IList<Comment> GetByFilters(int? userID)
+        {
+            return new CommentRepository().GetByFilters(userID);
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetCommentListByFilters(string userID)
+        {
+            var list = new HRRServices().GetByEnteredBy(Convert.ToInt16(userID));
+            string s = "[";
+            //var sb = new StringBuilder();
+            //sb.Append("<?xml version='1.0'?> <comments>");
+            foreach (var item in list)
+            {
+                //sb.Append("<comment><name>");
+                //sb.Append(item.EnteredForRef.FirstName);
+                //sb.Append("</name><enteredby>");
+                //sb.Append(item.EnteredByRef.Name);
+                //sb.Append("</enteredby><commentdate>");
+                //sb.Append(item.DateCreated.ToShortDateString());
+                //sb.Append("</commentdate><message>");
+                //sb.Append(item.Message);
+                //sb.Append("</message></comment>");
+                s += "{\"name\":\"" + item.EnteredForRef.LastName + "\",\"commentType\":\"" + item.CommentType.ToString() + "\",\"message\":\"" + item.Message + "\",\"enteredBy\":\"" + item.EnteredByRef.LastName + "\"},";
+            }
+            //sb.Append("</comments>");
+            return s.Remove(s.Length - 1, 1) + "]";// b.ToString();
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetAlertByDueDate()
+        {
+            var list = new AlertServices().GetAlertsByDueDate(DateTime.Now.AddDays(21));
+            string s = "[";
+            foreach (var item in list)
+            {
+                switch (item.ItemType)
+                {
+                    case AlertType.GOAL:
+                        var g = (HRR.Core.Domain.Goal)item;
+                        s+= "{\"avatar\":\"" + g.EnteredForRef.AvatarPath +
+                            "\",\"enteredfor\":\"<a style='vertical-align: top;' href='/People/" + g.EnteredForRef.Email + "'>" + g.EnteredForRef.Name + "</a>" +
+                            "\",\"alerttitle\":\"goal - <a style='vertical-align: top;' href='/Goals/" + g.ID.ToString() + "'>" + g.Title + "</a>" +
+                            "\",\"duedate\":\"" + g.DueDate.ToShortDateString() +
+                            "\"},";
+                        break;
+                    case AlertType.MILESTONE:
+                        var m = (HRR.Core.Domain.GoalMilestone)item;
+                        s += "{\"avatar\":\"" + m.EnteredForRef.AvatarPath +
+                             "\",\"enteredfor\":\"<a style='vertical-align: top;' href='/People/" + m.EnteredForRef.Email + "'>" + m.EnteredForRef.Name + "</a>" +
+                             "\",\"alerttitle\":\"milestone - <a style='vertical-align: top;' href='/Goals/" + m.GoalRef.ID.ToString() + "'>" + m.Title + "</a>" +
+                             "\",\"duedate\":\"" + m.DueDate.ToShortDateString() +
+                             "\"},";
+                        break;
+                    case AlertType.REVIEW:
+                        var r = (HRR.Core.Domain.Review)item;
+                        s += "{\"avatar\":\"" + r.EnteredForRef.AvatarPath +
+                            "\",\"enteredfor\":\"<a style='vertical-align: top;' href='/People/" + r.EnteredForRef.Email + "'>" + r.EnteredForRef.Name + "</a>" +
+                            "\",\"alerttitle\":\"review - <a style='vertical-align: top;' href='/Reviews/" + r.ID.ToString() + "'>" + r.Title + "</a>" +
+                            "\",\"duedate\":\"" + r.DueDate.ToShortDateString() +
+                            "\"},";
+                        break;
+
+                }
+                //s += "{\"name\":\"" + item.EnteredForRef.LastName + "\",\"commentType\":\"" + item.CommentType.ToString() + "\",\"message\":\"" + item.Message + "\",\"enteredBy\":\"" + item.EnteredByRef.LastName + "\"},";
+            }
+            return s.Remove(s.Length - 1, 1) + "]";
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetUpcomingEvents()
+        {
+            var list = new PersonServices().GetByUpcomingEvent(DateTime.Today).OrderBy(b => b.Birthdate).OrderBy(h => h.HireDate);
+
+            string s = "[";
+            foreach (var item in list)
+            {
+                if (((DateTime)item.Birthdate).Month.Equals(DateTime.Now.Month))
+                {
+                    s += "{\"avatar\":\"" + item.AvatarPath +
+                           "\",\"eventfor\":\"<a style='vertical-align: top;' href='/People/" + item.Email + "'>" + item.Name + "'s</a> birthday is " +
+                           "\",\"eventdate\":\"<span style='color: #ff6600;'>" + ((DateTime)item.Birthdate).Month.ToString() + "/" + ((DateTime)item.Birthdate).Day.ToString() + "</span>" +
+                           "\"},";
+                }
+                else
+                {
+                    s += "{\"avatar\":\"" + item.AvatarPath +
+                               "\",\"eventfor\":\"<a style='vertical-align: top;' href='/People/" + item.Email + "'>" + item.Name + "'s</a> anniversary is " +
+                               "\",\"eventdate\":\"<span style='color: #ff6600;'>" + ((DateTime)item.Birthdate).Month.ToString() + "/" + ((DateTime)item.Birthdate).Day.ToString() + "</span>" +
+                               "\"},";
+                }
+            }
+            return s.Remove(s.Length - 1, 1) + "]";
+        }
+
+        [OperationContract]
+        public AutoCompleteBoxData GetPeopleNames(RadAutoCompleteContext context)
+        {
+            //string clientData = context["ClientData"].ToString();
+
+            var list = new PersonServices().GetByLikeName(context.Text);
+            var teams = new TeamServices().GetByLikeName(context.Text);
+            var result = new List<AutoCompleteBoxItemData>();
+            foreach (var p in list)
+            {
+                var childNode = new AutoCompleteBoxItemData();
+                childNode.Text = p.Name;
+                childNode.Text = p.Email;
+                result.Add(childNode);
+            }
+            foreach(var t in teams)
+            {
+                var childNode = new AutoCompleteBoxItemData();
+                childNode.Text = t.Name;
+                childNode.Text = "team:" + t.ID.ToString();
+                result.Add(childNode);
+            }
+            var res = new AutoCompleteBoxData();
+            res.Items = result.ToArray();
+            return res;
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json)]
+        public string SaveGoal(Goal goalJson)
+        {
+            string result = "";
+
+            var review = new ReviewServices().GetEmployeeActiveReview(goalJson.EnteredFor);
+            if (review != null)
+            {
+                goalJson.ReviewID = review.ID;
+            }
+            new GoalServices().Save(goalJson);
+            foreach (var m in goalJson.Milestones)
+            {
+                m.GoalID = goalJson.ID;
+                new GoalMilestoneServices().Save(m);
+            }
+            foreach (var s in goalJson.Managers)
+            {
+                s.GoalID = goalJson.ID;
+                new GoalManagerServices().Save(s);
+            }
+            var a = new Activity();
+            a.AccountID = goalJson.AccountID;
+            a.URL = "/Goals/" + goalJson.ID.ToString();
+            a.ActivityType = (int)ActivityType.NEW_GOAL;
+            a.DateCreated = DateTime.Now;
+            a.PerformedBy = SecurityContextManager.Current.CurrentUser.ID;
+            a.PerformedFor = goalJson.EnteredFor;
+            new ActivityServices().Save(a);
+            string emails = "";
+            if (goalJson.Managers.Count > 0)
+            {
+                foreach (var m in goalJson.Managers)
+                {
+                    var p = new PersonServices().GetByID(m.PersonID);
+                    emails += p.Email + ",";
+                }
+            }
+            EmailHelper.SendNewGoalNotification(goalJson, emails);
+
+            result = "1:Goal Added Succesfully!:Goals/" + goalJson.ID.ToString();
+            return result;
+
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetGoalsForWeightingByPersonID(string userID)
+        {
+            var list = new ReviewServices().GetEmployeeActiveReview(Convert.ToInt16(userID)).Goals;
+            string s = "[";
+            foreach (var item in list)
+            {
+                s += "{\"title\":\"" + item.Title + "\",\"id\":\"" + item.ID.ToString() + "\",\"weight\":\"" + item.Weight + "\"},";
+            }
+            return s.Remove(s.Length - 1, 1) + "]";
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json)]
+        public void UpdateGoalWeight(IList<GoalWeight> weights)
+        {
+            foreach (var w in weights)
+            {
+                var goal = new GoalServices().GetByID(w.ID);
+                goal.Weight = w.Weight;
+                new GoalServices().Save(goal);
+            }
+        }
+
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+        public string SavePerson(Person person, ReviewSetup reviewsetup)
+        {
+            string result = "";
+
+            person.AccountID = SecurityContextManager.Current.CurrentAccount.ID;
+            person.TerminationDate = null;
+            person.DateAcceptedTerms = null;
+            person.AvatarPath = ResourceStrings.GravatarBasePath + DateTime.Now.ToBinary().ToString().Replace("-", "") + "?d=identicon&s=";
+            person.Password = IdeaSeed.Core.SecurityUtils.GetMd5Hash(person.Password);
+            var p = new PersonServices().Save(person);
+            if (person.ManagerID == -1)
+            {
+                person.ManagerID = p.ID;
+                new PersonServices().Save(p);
+            }
+
+            foreach (var m in person.Memberships)
+            {
+                m.PersonID = person.ID;
+                new TeamMemberServices().Save(m);
+            }
+            var review = new Review();
+            review.AccountID = SecurityContextManager.Current.CurrentAccount.ID;
+            review.ChangedBy = SecurityContextManager.Current.CurrentUser.ID;
+            review.DateCreated = DateTime.Now;
+            review.DueDate = reviewsetup.DueDate;
+            review.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
+            review.EnteredFor = person.ID;
+            review.IsActive = true;
+            review.IsCurrent = true;
+            review.LastUpdated = DateTime.Now;
+            review.ReviewTemplateID = reviewsetup.TemplateID;
+            review.StartDate = reviewsetup.StartDate;
+            review.Status = (int)GoalStatus.ACCEPTED;
+            review.Title = person.Name + " - Due: " + review.DueDate.ToShortDateString();
+            new ReviewServices().Save(review);
+
+            var t = new ReviewTemplateServices().GetByID(review.ReviewTemplateID);
+            foreach (var i in t.Questions)
+            {
+                var q = new ReviewQuestionScore();
+                q.Comment = "";
+                q.DateCreated = DateTime.Now;
+                q.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
+                q.Score = 0;
+                q.ReviewID = review.ID;
+                q.ReviewQuestionID = i.ID;
+                new ReviewQuestionScoreServices().Save(q);
+            }
+
+            if(person.ReceiveCommentNotifications)
+                EmailHelper.SendNewEmployeeNotification(person, "");
+            IdeaSeed.Core.Data.NHibernate.NHibernateSessionManager.Instance.CloseSession();
+            result = "1:Employee Added Succesfully!:People/" + person.Email;
+
+            var _cache = new MemcacheCacheAdapter();
+            _cache.Remove(SecurityContextManager
+                 .Current
+                 .CurrentUser.ID.ToString() + "_DepartmentsList");
+            var list = new DepartmentServices().GetAll().ToList<Department>();
+            _cache.Store(SecurityContextManager
+                 .Current
+                 .CurrentUser.ID.ToString() + "_DepartmentsList", list);
+            
+            return result;
+
+        }
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped)]
+        public string CloseReview(int oldreview, ReviewSetup reviewsetup)
+        {
+            string result = "";
+
+            if (oldreview > 0)
+            {
+                var review = new ReviewServices().GetByID(oldreview);
+                review.IsCurrent = false;
+                review.IsActive = false;
+                review.Status = (int)GoalStatus.COMPLETED;
+                review.Score = ReviewServices.CalculateCommentsScore(review)["Weighted"] + ReviewServices.CalculateGoalsScore(review)["Weighted"] + ReviewServices.CalculateQuestionsScore(review)["Weighted"];
+                new ReviewServices().Save(review);
+
+                var newreview = new Review();
+                newreview.AccountID = SecurityContextManager.Current.CurrentAccount.ID;
+                newreview.ChangedBy = SecurityContextManager.Current.CurrentUser.ID;
+                newreview.DateCreated = DateTime.Now;
+                newreview.DueDate = reviewsetup.DueDate;
+                newreview.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
+                newreview.EnteredFor = review.EnteredForRef.ID;
+                newreview.IsActive = true;
+                newreview.IsCurrent = true;
+                newreview.LastUpdated = DateTime.Now;
+                newreview.ReviewTemplateID = reviewsetup.TemplateID;
+                newreview.StartDate = reviewsetup.StartDate;
+                newreview.Status = (int)GoalStatus.ACCEPTED;
+                newreview.Title = review.EnteredForRef.Name + " - Due: " + review.DueDate.ToShortDateString();
+                newreview.CommentsWeight = SecurityContextManager.Current.CurrentAccount.CommentsWeight;
+                newreview.GoalsWeight = SecurityContextManager.Current.CurrentAccount.GoalsWeight;
+                newreview.QuestionsWeight = SecurityContextManager.Current.CurrentAccount.QuestionsWeight;
+                new ReviewServices().Save(newreview);
+                var t = new ReviewTemplateServices().GetByID(newreview.ReviewTemplateID);
+                foreach (var i in t.Questions)
+                {
+                    var q = new ReviewQuestionScore();
+                    q.Comment = "";
+                    q.DateCreated = DateTime.Now;
+                    q.EnteredBy = SecurityContextManager.Current.CurrentUser.ID;
+                    q.Score = 0;
+                    q.ReviewID = newreview.ID;
+                    q.ReviewQuestionID = i.ID;
+                    new ReviewQuestionScoreServices().Save(q);
+                }
+                EmailHelper.SendReviewNotification(newreview, review.EnteredForRef.Email);
+                if(review.EnteredForRef.ReceiveCommentNotifications)
+                    result = "1:New Review Successfully Created!:Reviews/" + newreview.ID.ToString();
+                return result;
+            }
+            return result;
+        }
+
+
+        [DataContract]
+        public class GoalWeight
+        {
+            [DataMember]
+            public int ID{ get; set; }
+            [DataMember]
+            public string Title { get; set; }
+            [DataMember]
+            public int Weight{ get; set; }
+        }
+
+        [DataContract]
+        public class ReviewSetup
+        {
+            [DataMember]
+            public DateTime StartDate { get; set; }
+            [DataMember]
+            public DateTime DueDate { get; set; }
+            [DataMember]
+            public int TemplateID { get; set; }
+        }
+    }
+}

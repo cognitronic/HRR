@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HRR.Core.Domain;
+using HRR.Persistence.Repositories;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+
+namespace HRR.Services
+{
+    public class GoalServices
+    {
+        public Goal GetByID(int id)
+        {
+            return new GoalRepository().GetByID(id, false);
+        }
+
+        public IList<Goal> GetAll()
+        {
+            return new GoalRepository()
+                .GetAll()
+                .OrderByDescending(o => o.DateCreated)
+                .ToList<Goal>(); ;
+        }
+
+        public Goal Save(Goal item)
+        {
+            return new GoalRepository().SaveOrUpdate(item);
+        }
+
+        public void Delete(Goal item)
+        {
+            new GoalRepository().Delete(item);
+        }
+
+        public IList<Goal> GetByEnteredBy(int enteredby, int statusid)
+        {
+            return new GoalRepository().GetByEnteredBy(enteredby, statusid);
+        }
+
+        public IList<Goal> GetByDueDate(DateTime duedate)
+        {
+            return new GoalRepository().GetByDueDate(duedate);
+        }
+
+        public IList<Goal> GetByEnteredFor(int enteredfor)
+        {
+            return new GoalRepository().GetByEnteredFor(enteredfor);
+        }
+
+        public IList<Goal> GetByReviewID(int reviewid)
+        {
+            return new GoalRepository().GetByReviewID(reviewid);
+        }
+
+        public IList<Goal> GetActiveManagersList(int userid)
+        {
+            return new GoalRepository().GetActiveManagersList(userid);
+        }
+
+        public IList<Goal> GetByStatusID(int statusid)
+        {
+            return new GoalRepository().GetByStatusID(statusid);
+        }
+
+        public IList<Goal> GetByAllActive()
+        {
+            return new GoalRepository().GetByAllActive();
+        }
+
+        public IList<Goal> GetByAllActiveEmployeeID(int enteredfor)
+        {
+            return new GoalRepository().GetByAllActiveEmployeeID(enteredfor);
+        }
+    }
+}

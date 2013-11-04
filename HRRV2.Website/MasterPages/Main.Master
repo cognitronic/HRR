@@ -1,0 +1,284 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="HRRV2.Website.MasterPages.Main" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:PlaceHolder ID="pcHead" runat="server">     
+        <%: Styles.Render("~/Content/css") %>
+    <link href="/Content/ui-lightness/jquery-ui-1.9.0.custom.css" rel="stylesheet" />
+          <%: Scripts.Render("~/bundles/modernizr") %>
+         <%: Scripts.Render("~/bundles/jquery") %>
+        <%-- <%: Scripts.Render("~/bundles/jqueryui") %>--%>
+         <%: Scripts.Render("~/bundles/jqueryval") %>
+        <%: Scripts.Render("~/bundles/WebFormsJs") %>
+    </asp:PlaceHolder>  
+    <link rel="stylesheet" href="/Content/jquery.qtip.min.css" type="text/css"/>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:radscriptmanager 
+        ID="RadScriptManager1" 
+        runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+            </Scripts>
+        </telerik:radscriptmanager>
+        <telerik:radajaxmanager 
+        ID="RadAjaxManager1" 
+        runat="server">
+        </telerik:radajaxmanager>
+        <section id="topnav">
+            <div id="top">
+                <div class="top-wrapper">
+                    <a href="/" title="">
+                        <img src="/images/logo.png" class="logo" alt="" />
+                    </a>
+                    <ul class="topnav">
+                        <li class="topuser">
+                            <a title="" data-toggle="dropdown">
+                                <telerik:RadBinaryImage ID="imgCurrentUserAvatar"
+                                runat="server"
+                                Width="25px"
+                                Height="25px"/>
+                                <span>
+                                    <idea:Label runat="server" ID="lbName" />
+                                </span>
+                                <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" title="My Profile">
+                                        <span class="user-profile"></span>My profile
+                                    </a>
+                                </li>
+                                <li>
+                                    
+                                    <a href="#" title="">
+                                        <span class="user-logout"></span>Logout
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <%--<li>
+                            <a href="#" title="">
+                                <b class="settings"></b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="">
+                                <b class="mail"></b>
+                            </a>
+                        </li>
+                        <li class="search">
+                            <a title="">
+                                <b class="search"></b>
+                            </a>
+                            <form class="top-search" action="#">
+                                <input type="text" placeholder="Search..." />
+                                <input type="submit" value="" />
+                            </form>
+                        </li>--%>
+                        <li class="sidebar-button">
+                            <a href="#" title="">
+                                <b class="responsive-nav"></b>
+                            </a>
+                        </li>
+                        <li>
+                            <idea:LinkButton
+                                runat="server"
+                                ID="lbLogout"
+                                OnClick="LogoutClicked">
+                                <b class="logout"></b>
+                            </idea:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <div id="mainwrapper" class="wrapper">
+
+	        <!-- Left sidebar -->
+            <section id="sidebar">
+                <div class="sidebar">
+
+        <!-- Sidebar user -->
+        <div class="sidebar-user">
+            <idea:LinkButton
+            runat="server"
+            ID="lbProfilePic"
+            onclick="ProfileClicked">
+                <telerik:RadBinaryImage 
+                ID="rbiCurrentProfile"
+                runat="server"
+                Width="40px"
+                Height="40px"/>
+                <strong><idea:Label runat="server" ID="lblProfileName"></idea:Label></strong><span><idea:Label runat="server" ID="lblProfileTitle"></idea:Label></span>
+            </idea:LinkButton>
+        </div>
+        <!-- /sidebar user -->
+
+        <ul class="navigation"><!-- standard nav -->
+            <li id="nav-dashboard">
+                <a href="/Overview" title=""><span class="menu-dashboard"></span>Dashboard</a>
+            </li>
+            <li id="nav-people">
+                <a href="#" title="" class="expand"><span class="menu-forms"></span>People<strong>3</strong></a>
+                <ul>
+                    <li id="subnav-staff">
+                        <a href="/People/Staff" title="">Staff List</a>
+                    </li>
+                    <li id="subnav-inactivestaff">
+                        <a href="/People/Inactive" title="">Inactive Staff</a>
+                    </li>
+                    <li id="subnav-orgchart">
+                        <a href="#" title="">Org Chart</a>
+                    </li>
+                </ul>
+            </li>
+            <li id="nav-comments">
+                <a href="/Comments" title="" ><span class="menu-messages"></span>Comments</a>
+            </li>
+            <li id="nav-goals">
+                <a href="#" title="" class="expand"><span class="menu-icons"></span>Goals <strong>3</strong></a>
+                <ul>
+                    <li id="subnav-goaloverview">
+                        <a href="/Goals/Overview" title="">Overview</a>
+                    </li>
+                    <li id="subnav-goaltemplates">
+                        <a href="/Goals/Templates" title="">Templates</a>
+                    </li>
+                    <li id="subnav-goallist">
+                        <a href="/Goals" title="">Current List</a>
+                    </li>
+                </ul>
+            </li>
+            <li id="nav-evaluations">
+                <a href="#" title="Evaluations" class="expand"><span class="menu-typo"></span>Evaluations <strong>2</strong></a>
+                <ul>
+                    <li id="subnav-evaluationoverview">
+                        <a href="/Evaluations/Overview" title="">Overview</a>
+                    </li>
+                    <li id="subnav-evaluationtemplates">
+                        <a href="/Evaluations/Templates" title="">Templates</a>
+                    </li>
+                </ul>
+            </li>
+            <li id="nav-reviews">
+                <a href="#" title=""><span class="menu-components"></span>Reviews</a>
+            </li>
+            <li id="nav-reports">
+                <a href="#" title=""><span class="menu-charts"></span>Reports</a>
+            </li>
+            <li id="nav-messages">
+                <a href="#" title=""><span class="menu-tables"></span>Messages</a>
+            </li>
+            <li id="nav-settings">
+                <a href="#" title="" class="expand"><span class="menu-errors"></span>Global Settings<strong>4</strong></a>
+                <ul>
+                    <li id="subnav-teams">
+                        <a href="/Settings/Teams" title="">Manage Teams</a>
+                    </li>
+                    <li id="subnav-accountprofile">
+                        <a href="/Settings/Account" title="">Account Profile</a>
+                    </li>
+                    <li id="subnav-managedlists">
+                        <a href="/Settings/Lists" title="">Managed Lists</a>
+                    </li>
+                    <li id="subnav-notifications">
+                        <a href="/Settings/Notifications" title="">Notifications</a>
+                    </li>
+                </ul>
+            </li>
+            <li id="nav-blog">
+                <a href="#" title=""><span class="menu-layouts"></span>Blog</a>
+            </li>
+            <li id="nav-polls">
+                <a href="#" title=""><span class="menu-files"></span>Polls</a>
+            </li>
+        </ul><!-- /standard nav -->
+
+        <div class="separator-doubled"></div>
+        
+        
+        
+        <!-- Contact list -->
+        <ul class="user-list block">
+            <li>
+                <a href="#" title="">
+                    <img src="/images/live/face1.png" alt="" />
+                    <span class="contact-name">
+                        <strong>Danny Schreiber</strong>
+                        <i>Review due in three days</i>
+                    </span>
+                    <span class="status_away"></span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="#" title="">
+                    <img src="/images/live/face2.png" alt="" />
+                    <span class="contact-name">
+                        <strong>Rachel McAdams</strong>
+                        <i>Goal Past Due!!</i>
+                    </span>
+                    <span class="status_off"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <img src="http://www.gravatar.com/avatar/00000000000000200003030100000090?d=identicon&s=37" alt="" />
+                    <span class="contact-name">
+                        <strong>David Darmstandler</strong>
+                        <i>Entered a comment for<br />
+                        Max Rosemire</i>
+                    </span>
+                    <span class="status_available"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <img src="http://www.gravatar.com/avatar/00000000000000200003095800000000?d=identicon&s=37" alt="" />
+                    <span class="contact-name">
+                        <strong>Mike Reiben</strong>
+                        <i>Entered a new comment for<br />
+                            Eric Arguello
+                        </i>
+                    </span>
+                    <span class="status_available"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="">
+                    <img src="http://www.gravatar.com/avatar/00000000000000200003030114000000?d=identicon&s=37" alt="" />
+                    <span class="contact-name">
+                        <strong>Brian Jump</strong>
+                        <i>Completed goal!</i>
+                    </span>
+                    <span class="status_available"></span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="separator-doubled"></div>
+
+    </div>
+            </section>
+            <!-- /left sidebar -->
+            <!-- Main content -->
+            <div class="content">
+                <div id="body">
+                    <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                    <section class="content-wrapper main-content clear-fix">
+                        <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                    </section>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

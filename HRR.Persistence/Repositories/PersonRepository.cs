@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Criterion;
+using IdeaSeed.Core.Data.NHibernate;
+using HRR.Core.Domain;
+using HRR.Core.Security;
+
+namespace HRR.Persistence.Repositories
+{
+    public class PersonRepository : BaseRepository<Person, int>
+    {
+        public IList<Person> GetByDepartmentID(int departmentID)
+        {
+            return Session.CreateCriteria<Person>()
+                .Add(Expression.Eq("DepartmentID", departmentID))
+                .Add(Expression.Eq("IsActive", true))
+                .List<Person>();
+        }
+
+        public IList<Person> GetByStatus(bool isactive)
+        {
+            return Session.CreateCriteria<Person>()
+                .Add(Expression.Eq("IsActive", isactive))
+                .Add(Expression.Eq("AccountID", ((Person)SecurityContextManager.Current.CurrentUser).AccountID))
+                .List<Person>();
+        }
+
+        public IList<Person> GetAllManagers()
+        {
+            if (SecurityContextManager.Current != null)
+            {
+                return Session.CreateCriteria<Person>()
+                    .Add(Expression.Eq("IsManager", true))
+                    .Add(Expression.Eq("IsActive", true))
+                    .Add(Expression.Eq("AccountID", ((Person)SecurityContextManager.Current.CurrentUser).AccountID))
+                    .List<Person>();
+            }
+            return null;
+        }
+
+        public IList<Person> GetByLikeName(string name)
+        {
+            if (SecurityContextManager.Current != null)
+            {
+                return Session.CreateCriteria<Person>()
+                    .Add(Expression.Like("LastName", "%" + name + "%"))
+                    .Add(Expression.Eq("IsActive", true))
+                    .Add(Expression.Eq("AccountID", ((Person)SecurityContextManager.Current.CurrentUser).AccountID))
+                    .List<Person>();
+            }
+            return null;
+        }
+
+        public IList<Person> GetByAccountID(int accountID)
+        {
+            return Session.CreateCriteria<Person>()
+                .Add(Expression.Eq("AccountID", accountID))
+                .List<Person>();
+        }
+
+        public IList<Person> GetByManagerID(int managerID)
+        {
+            return Session.CreateCriteria<Person>()
+                .Add(Expression.Eq("ManagerID", managerID))
+                .List<Person>();
+        }
+
+        public Person GetByEmail(string email)
+        {
+            return Session.CreateCriteria<Person>()
+                .Add(Expression.Eq("Email", email))
+                .UniqueResult<Person>();
+        }
+
+        public Person GetByEmailPassword(string email, string password)
+        {
+            return Session.CreateCriteria<Person>()
+                .Add(Expression.Eq("Email", email))
+                .Add(Expression.Eq("Password", password))
+                .UniqueResult<Person>();
+        }
+
+        public IList<Person> GetByUpcomingEvent(DateTime duedate)
+        {
+
+           var result = Session.CreateSQLQuery(
+           @"select * from Person where IsActive = 'true' and AccountID = " + ((Person)SecurityContextManager.Current.CurrentUser).AccountID.ToString() + @" and (DATEPART(m, Birthdate) = DATEPART(m,'" + DateTime.Today.ToShortDateString() + @"') or DATEPART(m, HireDate) = DATEPART(m, '" + DateTime.Today.ToShortDateString() + @"')) order by birthdate, hiredate")
+           .SetResultTransformer(NHibernate.Transform.Transformers.AliasToBean(typeof(Person)));
+            return result.List<Person>();
+
+            //return Session.CreateCriteria<Person>()
+            //    .Add(Expression.Or(
+            //     Restrictions.Like("Birthdate", DateTime.Today.Month.ToString() + "/" + DateTime.Today.Day.ToString() + "%", MatchMode.Anywhere),
+            //     Restrictions.Like("HireDate", DateTime.Today.Month.ToString() + "/" + DateTime.Today.Day.ToString() + "%", MatchMode.Anywhere)))
+            //    .List<Person>();
+        }
+    }
+}

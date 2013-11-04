@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="https://beta.hrriver.com/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://beta.hrriver.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="https://beta.hrriver.com/Imports">
+      <xsd:import schemaLocation="http://hrr.localhost/Comments.svc?xsd=xsd0" namespace="https://beta.hrriver.com/" />
+      <xsd:import schemaLocation="http://hrr.localhost/Comments.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://hrr.localhost/Comments.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/HRR.Core.Domain" />
+      <xsd:import schemaLocation="http://hrr.localhost/Comments.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://hrr.localhost/Comments.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Telerik.Web.UI" />
+      <xsd:import schemaLocation="http://hrr.localhost/Comments.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/HRR.WCFServicesLib" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="HRRServices_GetByFilters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByFilters" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetByFilters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByFiltersResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetCommentListByFilters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentListByFilters" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetCommentListByFilters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommentListByFiltersResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetAlertByDueDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertByDueDate" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetAlertByDueDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertByDueDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetUpcomingEvents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpcomingEvents" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetUpcomingEvents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUpcomingEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetPeopleNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeopleNames" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetPeopleNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPeopleNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_SaveGoal_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGoal" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_SaveGoal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveGoalResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetGoalsForWeightingByPersonID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGoalsForWeightingByPersonID" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_GetGoalsForWeightingByPersonID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGoalsForWeightingByPersonIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_UpdateGoalWeight_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGoalWeight" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_UpdateGoalWeight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateGoalWeightResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_SavePerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePerson" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_SavePerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_CloseReview_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseReview" />
+  </wsdl:message>
+  <wsdl:message name="HRRServices_CloseReview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseReviewResponse" />
+  </wsdl:message>
+  <wsdl:portType name="HRRServices">
+    <wsdl:operation name="GetByFilters">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/GetByFilters" message="tns:HRRServices_GetByFilters_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/GetByFiltersResponse" message="tns:HRRServices_GetByFilters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommentListByFilters">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/GetCommentListByFilters" message="tns:HRRServices_GetCommentListByFilters_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/GetCommentListByFiltersResponse" message="tns:HRRServices_GetCommentListByFilters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertByDueDate">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/GetAlertByDueDate" message="tns:HRRServices_GetAlertByDueDate_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/GetAlertByDueDateResponse" message="tns:HRRServices_GetAlertByDueDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpcomingEvents">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/GetUpcomingEvents" message="tns:HRRServices_GetUpcomingEvents_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/GetUpcomingEventsResponse" message="tns:HRRServices_GetUpcomingEvents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPeopleNames">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/GetPeopleNames" message="tns:HRRServices_GetPeopleNames_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/GetPeopleNamesResponse" message="tns:HRRServices_GetPeopleNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveGoal">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/SaveGoal" message="tns:HRRServices_SaveGoal_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/SaveGoalResponse" message="tns:HRRServices_SaveGoal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGoalsForWeightingByPersonID">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/GetGoalsForWeightingByPersonID" message="tns:HRRServices_GetGoalsForWeightingByPersonID_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/GetGoalsForWeightingByPersonIDResponse" message="tns:HRRServices_GetGoalsForWeightingByPersonID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateGoalWeight">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/UpdateGoalWeight" message="tns:HRRServices_UpdateGoalWeight_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/UpdateGoalWeightResponse" message="tns:HRRServices_UpdateGoalWeight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePerson">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/SavePerson" message="tns:HRRServices_SavePerson_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/SavePersonResponse" message="tns:HRRServices_SavePerson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseReview">
+      <wsdl:input wsaw:Action="https://beta.hrriver.com/HRRServices/CloseReview" message="tns:HRRServices_CloseReview_InputMessage" />
+      <wsdl:output wsaw:Action="https://beta.hrriver.com/HRRServices/CloseReviewResponse" message="tns:HRRServices_CloseReview_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

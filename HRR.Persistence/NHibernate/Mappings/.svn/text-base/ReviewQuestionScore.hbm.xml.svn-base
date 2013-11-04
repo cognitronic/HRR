@@ -1,0 +1,16 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="ReviewQuestionScore" table="ReviewQuestionScore">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="ReviewID" />
+        <property name="ReviewQuestionID" column="ReviewTemplateQuestionID" />
+        <property name="Score" />
+        <property name="Comment" />
+        <property name="DateCreated" />
+        <property name="EnteredBy" />
+        <many-to-one name="Question" class="HRR.Core.Domain.ReviewTemplateQuestion, HRR.Core" column="ReviewTemplateQuestionID" insert="false" update="false" cascade="none" />
+    </class>
+</hibernate-mapping>

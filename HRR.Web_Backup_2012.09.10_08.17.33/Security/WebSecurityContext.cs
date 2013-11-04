@@ -1,0 +1,277 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Security;
+using IdeaSeed.Web;
+using System.Web.SessionState;
+using IdeaSeed.Core;
+using HRR.Core.Security;
+using HRR.Core;
+using HRR.Core.Domain;
+using HRR.Services;
+using HRR.Core.Domain.Interfaces;
+
+namespace HRR.Web.Security
+{
+    public class WebSecurityContext : HRRSecurityContext, IRequiresSessionState
+    {
+        public WebSecurityContext()
+        {
+            this.SignOut += new EventHandler(WebSecurityContext_SignOut);
+        }
+
+        void WebSecurityContext_SignOut(object sender, EventArgs e)
+        {
+            string url = SecurityContextManager.Current.CurrentURL;
+            SecurityContextManager.Current = null;
+            HttpContext.Current.Session.Clear();
+            HttpContext.Current.Response.Cookies.Clear();
+            FormsAuthentication.SignOut();
+            HttpContext.Current.Response.Redirect(ResourceStrings.Page_Login + "?redirect=" + url);
+        }
+
+        public AuthenticationResponse AuthenticateUser(string userName, string password, string url, HRR.Core.Security.ISecurityContext securityContext)
+        {
+            var u = new PersonServices().GetByEmailPassword(userName, SecurityUtils.GetMd5Hash(password));
+            var response = new AuthenticationResponse();
+            if (u != null)
+            {
+                if (!u.IsActive)
+                {
+                    response.IsAuthenticated = false;
+                    response.CurrentAccessLevel = AccessLevels.NOACCESS;
+                    response.Message = "Your account has been marked as inactive.";
+                }
+                else
+                {
+                    CreateAuthenticationTicket(u.Email, u.ID.ToString(), DateTime.Now.AddMinutes(480), url);
+                    securityContext.CurrentUser = u;
+                    securityContext.IsAuthenticated = true;
+                    response.IsAuthenticated = true;
+                    response.CurrentAccessLevel = AccessLevels.FULLACCESS;
+                    //new UserRepository().SaveOrUpdate(u);
+                    //UserServices.LoadUserPreferences(SecurityContextManager.Current.CurrentUser);
+                }
+            }
+            else
+            {
+                securityContext.IsAuthenticated = false;
+                response.IsAuthenticated = false;
+                securityContext.CurrentUser = null;
+                response.Message = "Invalid username or password.  Please try again.";
+            }
+
+            return response;
+        }
+
+        private static void CreateAuthenticationTicket(string username, string userData, DateTime expiration, string url)
+        {
+            FormsAuthenticationTicket tkt = new FormsAuthenticationTicket(1, username, DateTime.Now, expiration, true, userData);
+            string encryptedCookie = FormsAuthentication.Encrypt(tkt);
+            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedCookie);
+            cookie.Expires = tkt.Expiration;
+            cookie.Path = FormsAuthentication.FormsCookiePath;
+            HttpContext.Current.Response.Cookies.Add(cookie);
+        }
+
+        public IBaseEntity CurrentItem
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentItem] != null)
+                {
+                    return (IBaseEntity)SessionManager.Current[ResourceStrings.Session_CurrentItem];
+                }
+                return null;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentItem] = value;
+            }
+        }
+
+        public IBaseApplicationPage CurrentPage
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentPage] != null)
+                {
+                    return (IBaseApplicationPage)SessionManager.Current[ResourceStrings.Session_CurrentPage];
+                }
+                return null;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentPage] = value;
+            }
+        }
+
+        public IPerson CurrentUser
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentUser] != null)
+                {
+                    return (Person)SessionManager.Current[ResourceStrings.Session_CurrentUser];
+                }
+                return null;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentUser] = value;
+            }
+        }
+
+        public Person CurrentProfile
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentProfile] != null)
+                {
+                    return (Person)SessionManager.Current[ResourceStrings.Session_CurrentProfile];
+                }
+                return null;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentProfile] = value;
+            }
+        }
+
+        public bool IsAuthenticated
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_IsAuthenticated] != null)
+                {
+                    return (bool)SessionManager.Current[ResourceStrings.Session_IsAuthenticated];
+                }
+                else
+                {
+                    SignOutUser();
+                    return false;
+                }
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_IsAuthenticated] = value;
+            }
+        }
+
+        public event EventHandler SignOut;
+
+        protected virtual void OnSignOut(EventArgs e)
+        {
+            var handler = this.SignOut;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        public void SignOutUser()
+        {
+            string url = HttpContext.Current.Request.Url.AbsolutePath;
+            SecurityContextManager.Current = null;
+            HttpContext.Current.Session.Clear();
+            HttpContext.Current.Response.Cookies.Clear();
+            FormsAuthentication.SignOut();
+            HttpContext.Current.Response.Redirect(ResourceStrings.Page_Login + "?redirect=" + url);
+        }
+
+        public string BaseURL
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentBaseURL] != null)
+                {
+                    return SessionManager.Current[ResourceStrings.Session_CurrentBaseURL].ToString();
+                }
+                else
+                {
+                    SessionManager.Current[ResourceStrings.Session_CurrentBaseURL] = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+                    return SessionManager.Current[ResourceStrings.Session_CurrentBaseURL].ToString();
+                }
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentBaseURL] = value;
+            }
+        }
+
+        public string PreviousURL
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentPreviousURL] != null)
+                {
+                    return SessionManager.Current[ResourceStrings.Session_CurrentPreviousURL].ToString();
+                }
+                return ResourceStrings.Page_Default;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentPreviousURL] = value;
+            }
+        }
+
+        public string CurrentURL
+        {
+            get
+            {
+                return HttpContext.Current.Request.Url.ToString();
+            }
+        }
+
+        public AccessLevels CurrentAccessLevel
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentAccessLevel] != null)
+                {
+                    return (AccessLevels)SessionManager.Current[ResourceStrings.Session_CurrentAccessLevel];
+                }
+                return AccessLevels.NOACCESS;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentAccessLevel] = value;
+            }
+        }
+
+        public Account CurrentAccount
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_Account] != null)
+                {
+                    return (Account)SessionManager.Current[ResourceStrings.Session_Account];
+                }
+                return null;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_Account] = value;
+            }
+        }
+
+        public int? CurrentTeamID
+        {
+            get
+            {
+                if (SessionManager.Current[ResourceStrings.Session_CurrentTeamID] != null)
+                {
+                    return (int)SessionManager.Current[ResourceStrings.Session_CurrentTeamID];
+                }
+                return null;
+            }
+            set
+            {
+                SessionManager.Current[ResourceStrings.Session_CurrentTeamID] = value;
+            }
+        }
+    }
+}

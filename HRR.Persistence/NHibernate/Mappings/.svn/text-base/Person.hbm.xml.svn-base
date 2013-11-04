@@ -1,0 +1,72 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="Person" table="Person">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="FirstName" />
+        <property name="LastName" />
+        <property name="IsActive" />
+        <property name="HireDate" />
+        <property name="TerminationDate" />
+        <property name="ReceiveCommentNotifications" />
+        <property name="Email" />
+        <property name="Password" />
+        <property name="MarkedForDeletion" />
+        <property name="Title" />
+        <property name="ManagerID" />
+        <property name="RoleID" />
+        <property name="DepartmentID" />
+        <property name="AvatarPath" />
+        <property name="AccountID" />
+        <property name="Birthdate" />
+        <property name="FacebookPath" />
+        <property name="TwitterPath" />
+        <property name="LinkedInPath" />
+        <property name="IsManager" />
+        <property name="PasswordQuestion" />
+        <property name="PasswordAnswer" />
+        <property name="EnteredBy" />
+        <property name="ChangedBy" />
+        <property name="DateCreated" />
+        <property name="LastUpdated" />
+        <property name="AcceptedTerms" />
+        <property name="DateAcceptedTerms" />
+        <bag name="Teammates" table="Person" generic="true" inverse="true" cascade="none">
+            <key column="DepartmentID"/>
+            <many-to-many column="ID" class="HRR.Core.Domain.Person, HRR.Core" />
+        </bag>
+        <bag name="Reviews" table="Review" generic="true" inverse="true" cascade="none">
+            <key column="EnteredFor"/>
+            <one-to-many  class="HRR.Core.Domain.Review, HRR.Core" />
+        </bag>
+        <bag name="CurrentReviews" table="Review" generic="true" inverse="true" cascade="none" lazy="true" where="IsCurrent = 1">
+            <key column="EnteredFor"/>
+            <one-to-many  class="HRR.Core.Domain.Review, HRR.Core" />
+        </bag>
+        <bag name="Documents" table="Document" generic="true" inverse="true" cascade="none">
+            <key column="PersonID"/>
+            <one-to-many  class="HRR.Core.Domain.Document, HRR.Core" />
+        </bag>
+        <bag name="Absences" table="Absence" generic="true" inverse="true" cascade="none">
+            <key column="EnteredFor"/>
+            <one-to-many  class="HRR.Core.Domain.Absence, HRR.Core" />
+        </bag>
+        <bag name="Notes" table="Note" generic="true" inverse="true" cascade="none">
+            <key column="EnteredFor"/>
+            <one-to-many  class="HRR.Core.Domain.Note, HRR.Core" />
+        </bag>
+        <bag name="Goals" table="Goal" generic="true" inverse="true" cascade="none">
+            <key column="EnteredFor"/>
+            <one-to-many  class="HRR.Core.Domain.Goal, HRR.Core" />
+        </bag>
+        <bag name="Memberships" table="TeamMember" generic="true" inverse="true" cascade="none">
+            <key column="PersonID"/>
+            <one-to-many not-found="ignore" class="HRR.Core.Domain.TeamMember, HRR.Core" />
+        </bag>
+        <many-to-one name="Manager" class="HRR.Core.Domain.Person, HRR.Core" column="ManagerID" insert="false" update="false" cascade="none" />
+        <many-to-one name="DepartmentRef" fetch="join" class="HRR.Core.Domain.Department, HRR.Core" column="DepartmentID" insert="false" update="false" cascade="none" />
+        <many-to-one name="AccountRef" class="HRR.Core.Domain.Account, HRR.Core" column="AccountID" insert="false" update="false" cascade="none" />
+    </class>
+</hibernate-mapping>

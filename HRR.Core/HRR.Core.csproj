@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AB6F0D5C-52EF-4034-80F2-D2ACA26A2E30}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HRR.Core</RootNamespace>
+    <AssemblyName>HRR.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="IdeaSeed.Core">
+      <HintPath>..\References\IdeaSeed.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Charting\Comment.cs" />
+    <Compile Include="Domain\CommentLike.cs" />
+    <Compile Include="Domain\Interfaces\Absence.cs" />
+    <Compile Include="Domain\AbsenceTypes.cs" />
+    <Compile Include="Domain\Account.cs" />
+    <Compile Include="Domain\Activity.cs" />
+    <Compile Include="Domain\ActivityType.cs" />
+    <Compile Include="Domain\AlertType.cs" />
+    <Compile Include="Domain\ApplicationException.cs" />
+    <Compile Include="Domain\ApplicationLog.cs" />
+    <Compile Include="Domain\ApplicationLogTypes.cs" />
+    <Compile Include="Domain\AutoSuggestRecipient.cs" />
+    <Compile Include="Domain\Blog.cs" />
+    <Compile Include="Domain\BlogCategory.cs" />
+    <Compile Include="Domain\BlogResponse.cs" />
+    <Compile Include="Domain\Comment.cs" />
+    <Compile Include="Domain\CommentCategory.cs" />
+    <Compile Include="Domain\CommentResponse.cs" />
+    <Compile Include="Domain\CommentTotal.cs" />
+    <Compile Include="Domain\Department.cs" />
+    <Compile Include="Domain\Document.cs" />
+    <Compile Include="Domain\Documentation.cs" />
+    <Compile Include="Domain\Goal.cs" />
+    <Compile Include="Domain\GoalCommunication.cs" />
+    <Compile Include="Domain\GoalManager.cs" />
+    <Compile Include="Domain\GoalMilestone.cs" />
+    <Compile Include="Domain\GoalStatus.cs" />
+    <Compile Include="Domain\GoalTemplate.cs" />
+    <Compile Include="Domain\GoalType.cs" />
+    <Compile Include="Domain\Interfaces\IAbsence.cs" />
+    <Compile Include="Domain\Interfaces\IApplicationLog.cs" />
+    <Compile Include="Domain\Interfaces\IAuditable.cs" />
+    <Compile Include="Domain\Interfaces\ICommentLike.cs" />
+    <Compile Include="Domain\Interfaces\IDocumentation.cs" />
+    <Compile Include="Domain\Interfaces\IItem.cs" />
+    <Compile Include="Domain\Interfaces\IBlog.cs" />
+    <Compile Include="Domain\Interfaces\IBlogCategory.cs" />
+    <Compile Include="Domain\Interfaces\IBlogResponse.cs" />
+    <Compile Include="Domain\Interfaces\ICommentResponse.cs" />
+    <Compile Include="Domain\Interfaces\IDocument.cs" />
+    <Compile Include="Domain\Interfaces\IGoalManager.cs" />
+    <Compile Include="Domain\Interfaces\IMessage.cs" />
+    <Compile Include="Domain\Interfaces\IAutoSuggestRecipient.cs" />
+    <Compile Include="Domain\Interfaces\IMessageRecipient.cs" />
+    <Compile Include="Domain\Interfaces\INote.cs" />
+    <Compile Include="Domain\Interfaces\IPerformanceEvaluationQuestionScore.cs" />
+    <Compile Include="Domain\Interfaces\IPerformanceEvaluationResponse.cs" />
+    <Compile Include="Domain\Interfaces\IPerformanceEvaluationSliderValue.cs" />
+    <Compile Include="Domain\Interfaces\IPerformanceEvaluation.cs" />
+    <Compile Include="Domain\Interfaces\IPerformanceEvaluationTemplate.cs" />
+    <Compile Include="Domain\Interfaces\IPerformanceEvaluationTemplateQuestion.cs" />
+    <Compile Include="Domain\Interfaces\IPoll.cs" />
+    <Compile Include="Domain\Interfaces\IPollOption.cs" />
+    <Compile Include="Domain\Interfaces\IPollResult.cs" />
+    <Compile Include="Domain\Interfaces\IQuestionRatingScale.cs" />
+    <Compile Include="Domain\Interfaces\IQuestionRatingScaleValue.cs" />
+    <Compile Include="Domain\Interfaces\IReviewManager.cs" />
+    <Compile Include="Domain\Interfaces\IReviewNote.cs" />
+    <Compile Include="Domain\ItemType.cs" />
+    <Compile Include="Domain\Message.cs" />
+    <Compile Include="Domain\MessageFolder.cs" />
+    <Compile Include="Domain\MessageRecipient.cs" />
+    <Compile Include="Domain\MessageStatusType.cs" />
+    <Compile Include="Domain\MessageType.cs" />
+    <Compile Include="Domain\Note.cs" />
+    <Compile Include="Domain\NoteType.cs" />
+    <Compile Include="Domain\PerformanceEvaluation.cs" />
+    <Compile Include="Domain\PerformanceEvaluationQuestionScore.cs" />
+    <Compile Include="Domain\PerformanceEvaluationResponse.cs" />
+    <Compile Include="Domain\PerformanceEvaluationSliderValue.cs" />
+    <Compile Include="Domain\PerformanceEvaluationTemplate.cs" />
+    <Compile Include="Domain\PerformanceEvaluationTemplateQuestion.cs" />
+    <Compile Include="Domain\Poll.cs" />
+    <Compile Include="Domain\PollOption.cs" />
+    <Compile Include="Domain\PollResult.cs" />
+    <Compile Include="Domain\QuestionRatingScale.cs" />
+    <Compile Include="Domain\QuestionRatingScaleValue.cs" />
+    <Compile Include="Domain\RecipientType.cs" />
+    <Compile Include="Domain\ReviewManager.cs" />
+    <Compile Include="Domain\ReviewNote.cs" />
+    <Compile Include="Domain\Team.cs" />
+    <Compile Include="Domain\TeamMember.cs" />
+    <Compile Include="Domain\Interfaces\IAlert.cs" />
+    <Compile Include="Domain\Interfaces\IGoal.cs" />
+    <Compile Include="Domain\Interfaces\IGoalMilestone.cs" />
+    <Compile Include="Domain\Interfaces\IAccount.cs" />
+    <Compile Include="Domain\Interfaces\IActivity.cs" />
+    <Compile Include="Domain\Interfaces\IComment.cs" />
+    <Compile Include="Domain\Interfaces\ICommentCategory.cs" />
+    <Compile Include="Domain\Interfaces\IDepartment.cs" />
+    <Compile Include="Domain\Interfaces\IGoalCommunication.cs" />
+    <Compile Include="Domain\Interfaces\IGoalTemplate.cs" />
+    <Compile Include="Domain\Interfaces\ITeam.cs" />
+    <Compile Include="Domain\Interfaces\ITeamMember.cs" />
+    <Compile Include="Domain\Interfaces\INotification.cs" />
+    <Compile Include="Domain\Interfaces\INotificationSubscriber.cs" />
+    <Compile Include="Domain\Interfaces\IPerson.cs" />
+    <Compile Include="Domain\Interfaces\IReview.cs" />
+    <Compile Include="Domain\Interfaces\IReviewQuestionScore.cs" />
+    <Compile Include="Domain\Interfaces\IReviewTemplate.cs" />
+    <Compile Include="Domain\Interfaces\IReviewTemplateQuestion.cs" />
+    <Compile Include="Domain\Notification.cs" />
+    <Compile Include="Domain\NotificationSubscriber.cs" />
+    <Compile Include="Domain\Person.cs" />
+    <Compile Include="Domain\Review.cs" />
+    <Compile Include="Domain\ReviewQuestionScore.cs" />
+    <Compile Include="Domain\ReviewTemplate.cs" />
+    <Compile Include="Domain\ReviewTemplateQuestion.cs" />
+    <Compile Include="Domain\SecurityRole.cs" />
+    <Compile Include="ICacheStorage.cs" />
+    <Compile Include="MessageBus.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceStrings.cs" />
+    <Compile Include="Security\AuthenticationResponse.cs" />
+    <Compile Include="Security\HRRSecurityContext.cs" />
+    <Compile Include="Security\ISecurityContext.cs" />
+    <Compile Include="Security\SecurityContextManager.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

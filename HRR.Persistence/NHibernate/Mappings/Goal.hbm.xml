@@ -1,0 +1,41 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="Goal" table="Goal">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="Title" />
+        <property name="Description" />
+        <property name="DateCreated" />
+        <property name="EnteredBy" />
+        <property name="EnteredFor" />
+        <property name="IsApproved" />
+        <property name="IsAccepted" />
+        <property name="IsTemplate" />
+        <property name="DueDate" />
+        <property name="Score" />
+        <property name="GoalType" />
+        <property name="ManagerEvaluation" />
+        <property name="EmployeeEvaluation" />
+        <property name="StatusID" />
+        <property name="Progress" />
+        <property name="ReviewID" />
+        <property name="Weight" />
+        <property name="AccountID" />
+        <many-to-one name="EnteredByRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="EnteredForRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredFor" insert="false" update="false" cascade="none" />
+        <bag name="Milestones" table="GoalMilestone" generic="true" inverse="true" cascade="none">
+            <key column="GoalID"/>
+            <one-to-many  class="HRR.Core.Domain.GoalMilestone, HRR.Core" />
+        </bag>
+        <bag name="Communication" table="GoalCommunication" generic="true" inverse="true" cascade="none">
+            <key column="GoalID"/>
+            <one-to-many  class="HRR.Core.Domain.GoalCommunication, HRR.Core" />
+        </bag>
+        <bag name="Managers" table="GoalManager" generic="true" inverse="true" cascade="none">
+            <key column="GoalID"/>
+            <one-to-many  class="HRR.Core.Domain.GoalManager, HRR.Core" />
+        </bag>
+    </class>
+</hibernate-mapping>

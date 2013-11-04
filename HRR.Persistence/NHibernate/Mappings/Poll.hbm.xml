@@ -1,0 +1,29 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="Poll" table="Poll">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="AccountID" />
+        <property name="StartDate" />
+        <property name="EndDate" />
+        <property name="Question" />
+        <property name="EnteredBy" />
+        <property name="IsActive" />
+        <property name="ChangedBy" />
+        <property name="TotalPolled" />
+        <property name="DateCreated" />
+        <property name="LastUpdated" />
+        <many-to-one name="EnteredByRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="AccountRef" class="HRR.Core.Domain.Account, HRR.Core" column="AccountID" insert="false" update="false" cascade="none" />
+        <bag name="Options" table="PollOption" generic="true" inverse="true" cascade="delete">
+            <key column="PollID"/>
+            <one-to-many  class="HRR.Core.Domain.PollOption, HRR.Core" />
+        </bag>
+        <bag name="Results" table="PollResult" generic="true" inverse="true" cascade="delete">
+            <key column="PollID"/>
+            <one-to-many  class="HRR.Core.Domain.PollResult, HRR.Core" />
+        </bag>
+    </class>
+</hibernate-mapping>

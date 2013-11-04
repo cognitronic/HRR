@@ -1,0 +1,15 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="CommentResponse" table="CommentResponse">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="Message" />
+        <property name="DateCreated" />
+        <property name="EnteredBy" />
+        <property name="CommentID" />
+        <many-to-one name="EnteredByRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="CommentRef" class="HRR.Core.Domain.Comment, HRR.Core" column="CommentID" insert="false" update="false" cascade="none" />
+    </class>
+</hibernate-mapping>

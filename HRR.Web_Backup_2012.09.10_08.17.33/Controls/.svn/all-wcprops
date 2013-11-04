@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/DPProjects/!svn/ver/500/trunk/HRR/HRR.Web/Controls
+END
+QuestionRatingScalesDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Web/Controls/QuestionRatingScalesDDL.cs
+END
+TeamUsersDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/DPProjects/!svn/ver/525/trunk/HRR/HRR.Web/Controls/TeamUsersDDL.cs
+END
+UserTeamsDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/DPProjects/!svn/ver/525/trunk/HRR/HRR.Web/Controls/UserTeamsDDL.cs
+END
+SecurityRolesDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Web/Controls/SecurityRolesDDL.cs
+END
+ManagersDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Web/Controls/ManagersDDL.cs
+END
+ReviewTemplateDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Controls/ReviewTemplateDDL.cs
+END
+CommentCategoryDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Controls/CommentCategoryDDL.cs
+END
+UsersDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DPProjects/!svn/ver/525/trunk/HRR/HRR.Web/Controls/UsersDDL.cs
+END
+TeamMembersDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/525/trunk/HRR/HRR.Web/Controls/TeamMembersDDL.cs
+END
+BlogCategoryDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Web/Controls/BlogCategoryDDL.cs
+END
+AbsenceTypeDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Web/Controls/AbsenceTypeDDL.cs
+END
+GoalTypeDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Controls/GoalTypeDDL.cs
+END
+DepartmentsDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Web/Controls/DepartmentsDDL.cs
+END
+GoalStatusDDL.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Controls/GoalStatusDDL.cs
+END

@@ -1,0 +1,43 @@
+END
+IGoal.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/IGoal.cs
+END
+IPollResult.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/IPollResult.cs
+END
+INote.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/INote.cs
+END
+IPoll.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/IPoll.cs
+END
+Absence.cs
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/Absence.cs
+END
+IAutoSuggestRecipient.cs
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/IAutoSuggestRecipient.cs
+END
+IPollOption.cs
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Core/Domain/Interfaces/IPollOption.cs
+END

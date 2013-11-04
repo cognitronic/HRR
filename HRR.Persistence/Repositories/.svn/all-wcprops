@@ -1,0 +1,61 @@
+END
+ActivityRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/ActivityRepository.cs
+END
+PollOptionRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/PollOptionRepository.cs
+END
+ReviewRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DPProjects/!svn/ver/539/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/ReviewRepository.cs
+END
+CommentRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/DPProjects/!svn/ver/542/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/CommentRepository.cs
+END
+BlogRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/BlogRepository.cs
+END
+PollResultRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/PollResultRepository.cs
+END
+NoteRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/NoteRepository.cs
+END
+TeamRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/TeamRepository.cs
+END
+PollRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/PollRepository.cs
+END
+PersonRepository.cs
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Persistence/Repositories/PersonRepository.cs
+END

@@ -1,0 +1,61 @@
+END
+Account.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/DPProjects/!svn/ver/543/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Account.hbm.xml
+END
+PollOption.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/PollOption.hbm.xml
+END
+Review.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/DPProjects/!svn/ver/542/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Review.hbm.xml
+END
+Goal.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Goal.hbm.xml
+END
+Comment.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Comment.hbm.xml
+END
+Blog.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Blog.hbm.xml
+END
+PollResult.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/PollResult.hbm.xml
+END
+Note.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Note.hbm.xml
+END
+Person.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Person.hbm.xml
+END
+Poll.hbm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Persistence/NHibernate/Mappings/Poll.hbm.xml
+END

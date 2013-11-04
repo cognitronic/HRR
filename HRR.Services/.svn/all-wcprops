@@ -1,0 +1,97 @@
+END
+SecurityServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Services/SecurityServices.cs
+END
+AlertServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Services/AlertServices.cs
+END
+EmailHelper.cs
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Services/EmailHelper.cs
+END
+MemcacheCacheAdapter.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/DPProjects/!svn/ver/544/branches/HRR/GoalsBranch/HRR.Services/MemcacheCacheAdapter.cs
+END
+BlogServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Services/BlogServices.cs
+END
+MessageServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Services/MessageServices.cs
+END
+TeamServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Services/TeamServices.cs
+END
+ActivityServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Services/ActivityServices.cs
+END
+PollOptionServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Services/PollOptionServices.cs
+END
+ReviewServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Services/ReviewServices.cs
+END
+CommentServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/DPProjects/!svn/ver/542/branches/HRR/GoalsBranch/HRR.Services/CommentServices.cs
+END
+HRR.Services.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Services/HRR.Services.csproj
+END
+PollResultServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Services/PollResultServices.cs
+END
+NoteServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/548/branches/HRR/GoalsBranch/HRR.Services/NoteServices.cs
+END
+PollServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/546/branches/HRR/GoalsBranch/HRR.Services/PollServices.cs
+END
+PersonServices.cs
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/DPProjects/!svn/ver/547/branches/HRR/GoalsBranch/HRR.Services/PersonServices.cs
+END

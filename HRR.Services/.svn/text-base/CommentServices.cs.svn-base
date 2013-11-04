@@ -1,0 +1,186 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HRR.Core.Domain;
+using HRR.Core.Domain.Interfaces;
+using HRR.Persistence.Repositories;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+
+namespace HRR.Services
+{
+    [ServiceContract(Namespace = "HRRiver")]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Required)]
+    public class CommentServices
+    {
+        public Comment GetByID(int id)
+        {
+            return new CommentRepository().GetByID(id, false);
+        }
+
+        public IList<Comment> GetAll()
+        {
+            return new CommentRepository()
+                .GetAll()
+                .OrderByDescending(o => o.DateCreated)
+                .ToList<Comment>(); ;
+        }
+
+        public Comment Save(Comment item)
+        {
+            return new CommentRepository().SaveOrUpdate(item);
+        }
+
+        public void Delete(Comment item)
+        {
+            new CommentRepository().Delete(item);
+        }
+
+        public IList<Comment> GetAllAppropriate()
+        {
+            return new CommentRepository().GetAllAppropriate();
+        }
+
+        public IList<Comment> GetAllAppropriateForFeed()
+        {
+            return new CommentRepository().GetAllAppropriateForFeed();
+        }
+
+        public IList<Comment> GetByEnteredBy(int enteredby)
+        {
+            return new CommentRepository().GetByEnteredBy(enteredby);
+        }
+
+        public IList<Comment> GetByEnteredFor(int enteredfor)
+        {
+            return new CommentRepository().GetByEnteredFor(enteredfor);
+        }
+
+        public IList<Comment> GetMyComments(int userID)
+        {
+            return new CommentRepository().GetMyComments(userID).OrderByDescending(o => o.DateCreated).ToList<Comment>();
+        }
+
+        public IList<Comment> GetCommentsForReview(int userID, DateTime startdate, DateTime enddate)
+        {
+            return new CommentRepository().GetCommentsForReview(userID, startdate, enddate);
+        }
+
+        public IList<Comment> GetByTeamID(int teamid)
+        {
+            return new CommentRepository().GetByTeamID(teamid);
+        }
+
+        public IList<Comment> GetAllFlagged()
+        {
+            return new CommentRepository().GetAllFlagged();
+        }
+
+        public IList<Comment> GetFlaggedByTeamID(int teamID)
+        {
+            return new CommentRepository().GetFlaggedByTeamID(teamID);
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public IList<Comment> GetByFilters(int? userID)
+        {
+            return new CommentRepository().GetByFilters(userID);
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetCommentListByFilters(string userID)
+        {
+            var list = new CommentServices().GetByEnteredBy(Convert.ToInt16(userID));
+            string s = "";
+            foreach (var item in list)
+            {
+                s += "{\"name\":\"" + item.EnteredForRef.FirstName + " " + item.EnteredForRef.LastName + "\",\"commentType\":\"" + item.CommentType.ToString() + "\",\"message\":\"" + item.Message + "\",\"enteredBy\":\"" + item.EnteredByRef.FirstName + " " + item.EnteredByRef.LastName + "\",\"commentDate\":\"" + item.DateCreated.ToShortDateString() + "\"}";
+            }
+            return "";
+        }
+
+        public CommentTotal GetCommentTotalsByEmployeeID(int empid, string start, string end)
+        {
+            return new CommentRepository().GetCommentTotalsByEmployeeID(empid, start, end);
+        }
+
+        public CommentTotal GetCommentTotalsForReviewResults(int empid, string start, string end)
+        {
+            return new CommentRepository().GetCommentTotalsForReviewResults(empid, start, end);
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetAlertByDueDate()
+        {
+            var list = new AlertServices().GetAlertsByDueDate(DateTime.Now.AddDays(21));
+            string s = "[";
+            foreach (var item in list)
+            {
+                switch (item.ItemType)
+                {
+                    case AlertType.GOAL:
+                        var g = (HRR.Core.Domain.Goal)item;
+                        s += "{\"avatar\":\"" + g.EnteredForRef.AvatarPath +
+                            "\",\"enteredfor\":\"<a style='vertical-align: top;' href='/People/" + g.EnteredForRef.Email + "'>" + g.EnteredForRef.Name + "</a>" +
+                            "\",\"alerttitle\":\"goal - <a style='vertical-align: top;' href='/Goals/" + g.ID.ToString() + "'>" + g.Title + "</a>" +
+                            "\",\"duedate\":\"" + g.DueDate.ToShortDateString() +
+                            "\"},";
+                        break;
+                    case AlertType.MILESTONE:
+                        var m = (HRR.Core.Domain.GoalMilestone)item;
+                        s += "{\"avatar\":\"" + m.EnteredForRef.AvatarPath +
+                             "\",\"enteredfor\":\"<a style='vertical-align: top;' href='/People/" + m.EnteredForRef.Email + "'>" + m.EnteredForRef.Name + "</a>" +
+                             "\",\"alerttitle\":\"milestone - <a style='vertical-align: top;' href='/Goals/" + m.GoalRef.ID.ToString() + "'>" + m.Title + "</a>" +
+                             "\",\"duedate\":\"" + m.DueDate.ToShortDateString() +
+                             "\"},";
+                        break;
+                    case AlertType.REVIEW:
+                        var r = (HRR.Core.Domain.Review)item;
+                        s += "{\"avatar\":\"" + r.EnteredForRef.AvatarPath +
+                            "\",\"enteredfor\":\"<a style='vertical-align: top;' href='/People/" + r.EnteredForRef.Email + "'>" + r.EnteredForRef.Name + "</a>" +
+                            "\",\"alerttitle\":\"review - <a style='vertical-align: top;' href='/Reviews/" + r.ID.ToString() + "'>" + r.Title + "</a>" +
+                            "\",\"duedate\":\"" + r.DueDate.ToShortDateString() +
+                            "\"},";
+                        break;
+
+                }
+                //s += "{\"name\":\"" + item.EnteredForRef.LastName + "\",\"commentType\":\"" + item.CommentType.ToString() + "\",\"message\":\"" + item.Message + "\",\"enteredBy\":\"" + item.EnteredByRef.LastName + "\"},";
+            }
+            return s.Remove(s.Length - 1, 1) + "]";
+        }
+
+        [OperationContract]
+        [WebInvoke(ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        public string GetUpcomingEvents()
+        {
+            var list = new PersonServices().GetByUpcomingEvent(DateTime.Today);
+
+            string s = "[";
+            foreach (var item in list)
+            {
+                if (item.Birthdate.Month.Equals(DateTime.Now.Month))
+                {
+                    s += "{\"avatar\":\"" + item.AvatarPath +
+                           "\",\"eventfor\":\"<a style='vertical-align: top;' href='/People/" + item.Email + "'>" + item.Name + "'s</a> birthday is " +
+                           "\",\"eventdate\":\"<span style='color: #ff6600;'>" + item.Birthdate.Month.ToString() + "/" + item.Birthdate.Day.ToString() + "</span>" +
+                           "\"},";
+                }
+                else
+                {
+                    s += "{\"avatar\":\"" + item.AvatarPath +
+                               "\",\"eventfor\":\"<a style='vertical-align: top;' href='/People/" + item.Email + "'>" + item.Name + "'s</a> anniversary is " +
+                               "\",\"eventdate\":\"<span style='color: #ff6600;'>" + item.HireDate.Month.ToString() + "/" + item.HireDate.Day.ToString() + "</span>" +
+                               "\"},";
+                }
+            }
+            return s.Remove(s.Length - 1, 1) + "]";
+        }
+    }
+}

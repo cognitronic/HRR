@@ -1,0 +1,45 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="Review" table="Review">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="Title" />
+        <property name="StartDate" />
+        <property name="DateCreated" />
+        <property name="EnteredBy" />
+        <property name="EnteredFor" />
+        <property name="IsActive" />
+        <property name="Status" />
+        <property name="ReviewTemplateID" />
+        <property name="Score" />
+        <property name="AccountID" />
+        <property name="DueDate" />
+        <property name="LastUpdated" />
+        <property name="ChangedBy" />
+        <property name="IsCurrent" />
+        <property name="GoalsWeight" />
+        <property name="CommentsWeight" />
+        <property name="QuestionsWeight" />
+        <many-to-one name="EnteredByRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="ChangedByRef" class="HRR.Core.Domain.Person, HRR.Core" column="ChangedBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="EnteredForRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredFor" insert="false" update="false" cascade="none" />
+        <bag name="Goals" table="Goal" generic="true" inverse="true" cascade="none">
+            <key column="ReviewID"/>
+            <one-to-many class="HRR.Core.Domain.Goal, HRR.Core" />
+        </bag>
+        <bag name="Notes" table="ReviewNote" generic="true" inverse="true" cascade="none">
+            <key column="ReviewID"/>
+            <one-to-many class="HRR.Core.Domain.ReviewNote, HRR.Core" />
+        </bag>
+        <bag name="ReviewQuestionScores" table="ReviewQuestionScore" generic="true" inverse="true" cascade="none">
+            <key column="ReviewID"/>
+            <one-to-many class="HRR.Core.Domain.ReviewQuestionScore, HRR.Core" />
+        </bag>
+        <bag name="Managers" table="ReviewManager" generic="true" inverse="true" cascade="none">
+            <key column="ReviewID"/>
+            <one-to-many  class="HRR.Core.Domain.ReviewManager, HRR.Core" />
+        </bag>
+    </class>
+</hibernate-mapping>

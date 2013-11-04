@@ -1,0 +1,12 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="BlogCategory" table="BlogCategory">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="Name" />
+        <property name="Description" />
+        <property name="AccountID" />
+    </class>
+</hibernate-mapping>

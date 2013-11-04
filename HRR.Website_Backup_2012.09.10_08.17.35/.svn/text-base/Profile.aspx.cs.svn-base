@@ -1,0 +1,365 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using HRR.Core.Domain;
+using HRR.Core.Security;
+using HRR.Services;
+using HRR.Web.Bases;
+using HRR.Web.Utils;
+using IdeaSeed.Core;
+using System.Text;
+using System.Web.UI.HtmlControls;
+using System.Configuration;
+
+namespace HRR.Website
+{
+    public partial class Profile : HRRBasePage
+    {
+        private Person CurrentProfile
+        {
+            get
+            {
+                SecurityContextManager.Current.CurrentProfile = HttpPageHelper.CurrentProfile;
+                return HttpPageHelper.CurrentProfile;
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (SecurityContextManager.Current.CurrentUser.Email.Equals(CurrentProfile.Email) || ((Person)SecurityContextManager.Current.CurrentUser).RoleID == (int)SecurityRole.ADMIN)
+            {
+                divEditProfile.Visible = true;
+            }
+            else
+            {
+                divEditProfile.Visible = false;
+            }
+            if (!IsPostBack)
+            {
+                this.Master.MasterProfileInfo.Visible = false;
+                this.Master.MasterProfilePicLink.Enabled = false;
+                LoadProfile();
+                if (CurrentProfile != null)
+                {
+                    LoadComments();
+                    LoadAbsences();
+                    LoadDocuments();
+                    LoadGoals();
+                    LoadReviews();
+                    LoadTeams();
+                    LoadTabRecordCount();
+                }
+            }
+        }
+
+        protected void ResponseCountClicked(object o, EventArgs e)
+        {
+            Response.Redirect("/Comments/" + ((LinkButton)o).Attributes["itemid"]);
+        }
+
+        protected void CommentFilterIndexChanged(object o, EventArgs e)
+        {
+            LoadComments();
+        }
+
+        protected void CommentsItemDataBound(object o, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var p = ((HRR.Core.Domain.Comment)e.Item.DataItem);
+                var lbl = (IdeaSeed.Web.UI.Label)e.Item.FindControl("lblMessage"); var responses = (IdeaSeed.Web.UI.LinkButton)e.Item.FindControl("lbResponseCount");
+                responses.Text = p.Communication.Count().ToString() + " responses left";
+                if (p.CommentType == -1)
+                {
+                    if (((Person)SecurityContextManager.Current.CurrentUser).RoleID == (int)SecurityRole.EXECUTIVE_MANAGEMENT || ((Person)SecurityContextManager.Current.CurrentUser).RoleID == (int)SecurityRole.ADMIN)
+                    {
+                        lbl.Text = p.Message;
+                    }
+                    else
+                    {
+                        if (SecurityContextManager.Current.CurrentUser.ID != p.EnteredFor && SecurityContextManager.Current.CurrentUser.ID != p.EnteredBy)
+                        {
+                            if (((Person)SecurityContextManager.Current.CurrentUser).RoleID < (int)SecurityRole.MANAGER)
+                            {
+                                ((HtmlGenericControl)e.Item.FindControl("divContainer")).Visible = false;
+                                lbl.Text = "<i><b>Contstructive Comment Made</b></i>";
+                            }
+                            else
+                            {
+                                if (((Person)SecurityContextManager.Current.CurrentUser).ID == p.EnteredForRef.ManagerID || ((Person)SecurityContextManager.Current.CurrentUser).ID == p.EnteredByRef.ManagerID)
+                                {
+                                    lbl.Text = p.Message;
+                                }
+                                else
+                                {
+                                    ((HtmlGenericControl)e.Item.FindControl("divContainer")).Visible = false;
+                                    lbl.Text = "<i><b>Contstructive Comment Made</b></i>";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            lbl.Text = p.Message;
+                        }
+                    }
+                    ((HtmlGenericControl)e.Item.FindControl("lblEnteredBy")).Visible = false;
+                }
+                else
+                    lbl.Text = p.Message;
+            }
+        }
+
+        protected void ReportPostClicked(object o, EventArgs e)
+        {
+            var c = new CommentServices().GetByID(Convert.ToInt16(((LinkButton)o).Attributes["postid"]));
+            c.FlaggedAsInappropriate = true;
+            new CommentServices().Save(c);
+            IdeaSeed.Core.Data.NHibernate.NHibernateSessionManager.Instance.CloseSession();
+            var nc = new CommentServices().GetByID(c.ID);
+            var sb = new StringBuilder();
+            sb.Append(EmailHelper.EmailHTMLStart());
+            sb.Append("<div class='maincontainer'>");
+            sb.Append("<h2><span>Comment Flagged As Inappropriate</span></h2>");
+            sb.Append("<div class='maincontent'>");
+            sb.Append(SecurityContextManager.Current.CurrentUser.Name);
+            sb.Append(" flagged the following comment as inappropriate.<br /><br />");
+            sb.Append("Comment ID: ");
+            sb.Append(nc.ID.ToString());
+            sb.Append("<br />Entered For: ");
+            sb.Append(nc.EnteredForRef.Name);
+            sb.Append("<br />Entered By: ");
+            sb.Append(nc.EnteredByRef.Name);
+            sb.Append("<br />Comment: ");
+            sb.Append(nc.Message);
+            sb.Append("<br />Click here to view: <a href='");
+            sb.Append(ConfigurationManager.AppSettings["BASEURL"]);
+            sb.Append("'>HRRiver.com</a></div></div>");
+            sb.Append(EmailHelper.EmailHTMLEnd());
+            try
+            {
+                var list = new NotificationSubscriberServices().GetByNotificationID((int)Notification.FLAGGED_COMMENT);
+                foreach (var sub in list)
+                {
+                    IdeaSeed.Core.Mail.EmailUtils.SendEmail(sub.Subscriber.Email, "noreply@hrrriver.com", "", "", "A Comment Has Been Flagged", sb.ToString(), false, "");
+                }
+            }
+            catch (Exception exc)
+            {
+
+            }
+
+            LoadComments();
+        }
+
+        protected void ItemDataBound(object o, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var p = ((HRR.Core.Domain.Comment)e.Item.DataItem);
+                var lbl = (IdeaSeed.Web.UI.Label)e.Item.FindControl("lblMessage");
+                if (p.CommentType == -1)
+                {
+                    if (((Person)SecurityContextManager.Current.CurrentUser).RoleID == (int)SecurityRole.EXECUTIVE_MANAGEMENT || ((Person)SecurityContextManager.Current.CurrentUser).RoleID == (int)SecurityRole.ADMIN)
+                    {
+                        lbl.Text = p.Message;
+                    }
+                    else
+                    {
+                        if (SecurityContextManager.Current.CurrentUser.ID != p.EnteredFor && SecurityContextManager.Current.CurrentUser.ID != p.EnteredBy)
+                        {
+                            if (((Person)SecurityContextManager.Current.CurrentUser).RoleID < (int)SecurityRole.MANAGER)
+                            {
+                                ((HtmlGenericControl)e.Item.FindControl("divContainer")).Visible = false;
+                                lbl.Text = "<i><b>Contstructive Comment Made</b></i>";
+                            }
+                            else
+                            {
+                                if (((Person)SecurityContextManager.Current.CurrentUser).ID == p.EnteredForRef.ManagerID || ((Person)SecurityContextManager.Current.CurrentUser).ID == p.EnteredByRef.ManagerID)
+                                {
+                                    lbl.Text = p.Message;
+                                }
+                                else
+                                {
+                                    ((HtmlGenericControl)e.Item.FindControl("divContainer")).Visible = false;
+                                    lbl.Text = "<i><b>Contstructive Comment Made</b></i>";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            lbl.Text = p.Message;
+                        }
+                    }
+                    ((HtmlGenericControl)e.Item.FindControl("lblEnteredBy")).Visible = false;
+                }
+                else
+                    lbl.Text = p.Message;
+            }
+        }
+
+        private void LoadComments()
+        {
+            var list = new CommentServices().GetAllAppropriateForFeed().OrderByDescending(o => o.DateCreated);
+
+            //switch (ddlCommentFilter.SelectedIndex)
+            //{
+            //    case 0:
+            //        list = new CommentServices().GetMyComments(SecurityContextManager.Current.CurrentProfile.ID).OrderByDescending(o => o.DateCreated).ToList();
+            //        break;
+            //    case 1:
+            //        list = new CommentServices().GetByEnteredBy(SecurityContextManager.Current.CurrentProfile.ID).OrderByDescending(o => o.DateCreated).ToList();
+            //        break;
+            //    case 2:
+            //        list = new CommentServices().GetByEnteredFor(SecurityContextManager.Current.CurrentProfile.ID).OrderByDescending(o => o.DateCreated).ToList();
+            //        break;
+            //}
+
+
+
+            switch (((Person)SecurityContextManager.Current.CurrentUser).RoleID)
+            {
+                case (int)SecurityRole.ADMIN:
+                case (int)SecurityRole.EXECUTIVE_MANAGEMENT:
+                    var mine = from l in list
+                               where l.EnteredBy == SecurityContextManager.Current.CurrentProfile.ID ||
+                               l.EnteredFor == SecurityContextManager.Current.CurrentProfile.ID
+                               orderby l.DateCreated descending
+                               select l;
+                    dlComments.DataSource = mine;
+                    dlComments.DataBind();
+                    break;
+                case (int)SecurityRole.MANAGER:
+                    var team = ((Person)SecurityContextManager.Current.CurrentUser).DepartmentRef.People;
+                    var comments = new List<Comment>();
+                    foreach (var member in team)
+                    {
+                        mine = from l in list
+                               where l.EnteredBy == member.ID ||
+                               l.EnteredFor == member.ID
+                               orderby l.DateCreated descending
+                               select l;
+                        comments.AddRange(mine);
+                    }
+                    dlComments.DataSource = comments.Distinct();
+                    dlComments.DataBind();
+                    break;
+                default:
+                    mine = from l in list
+                           where (l.EnteredBy == SecurityContextManager.Current.CurrentUser.ID && l.EnteredFor == SecurityContextManager.Current.CurrentProfile.ID) ||
+                           (l.EnteredFor == SecurityContextManager.Current.CurrentUser.ID && l.EnteredBy == SecurityContextManager.Current.CurrentProfile.ID)
+                           orderby l.DateCreated descending
+                           select l;
+                    dlComments.DataSource = mine;
+                    dlComments.DataBind();
+                    break;
+            }
+
+
+            //dlComments.DataSource = list.Distinct();
+            //dlComments.DataBind();
+        }
+
+        protected override void OnUnload(EventArgs e)
+        {
+            base.OnUnload(e);
+            if (SecurityContextManager.Current != null)
+            {
+                SecurityContextManager.Current.CurrentProfile = null;
+            }
+        }
+
+        protected void EditClicked(object o, EventArgs e)
+        {
+            Response.Redirect(SecurityContextManager.Current.CurrentURL + "/Edit");
+        }
+
+        private void LoadProfile()
+        {
+            lblName.Text = CurrentProfile.FirstName + " " + CurrentProfile.LastName;
+            //rbiAvatar.ImageUrl = CurrentProfile.AvatarPath;
+            lblTitle.Text = CurrentProfile.Title;
+            lblBirthdate.Text = CurrentProfile.Birthdate.ToString("m");
+            //lblCompanyScore.Text = "96%";
+            lblDepartment.Text = CurrentProfile.DepartmentRef.Name;
+            lblHireDate.Text = CurrentProfile.HireDate.ToShortDateString();
+        }
+
+        private void LoadAbsences()
+        {
+            rgAbsences.DataSource = CurrentProfile.Absences;
+            rgAbsences.DataBind();
+        }
+
+        private void LoadTeams()
+        {
+            rgTeams.DataSource = CurrentProfile.Memberships;
+            rgTeams.DataBind();
+        }
+
+        private void LoadDocuments()
+        {
+            if (CurrentProfile.Documents.Count > 0)
+            {
+                rgDocuments.DataSource = CurrentProfile.Documents;
+                rgDocuments.DataBind();
+            }
+        }
+
+        private void LoadGoals()
+        {
+            if (CurrentProfile.Goals.Count > 0)
+            {
+                rgGoals.DataSource = CurrentProfile.Goals;
+                rgGoals.DataBind();
+            }
+        }
+
+        private void LoadReviews()
+        {
+            if (CurrentProfile.Reviews.Count > 0)
+            {
+                rgReviews.DataSource = CurrentProfile.Reviews;
+                rgReviews.DataBind();
+            }
+        }
+
+        private void LoadTabRecordCount()
+        {
+            if (CurrentProfile.Absences.Count > 0)
+            {
+                rtsProfile.Tabs.FindTabByValue("5").Text = "";
+                rtsProfile.Tabs.FindTabByValue("5").Text += "absences (" + CurrentProfile.Absences.Count.ToString() + ")";
+            }
+
+            if (CurrentProfile.Documents.Count > 0)
+            {
+                rtsProfile.Tabs.FindTabByValue("4").Text = "";
+                rtsProfile.Tabs.FindTabByValue("4").Text += "documents (" + CurrentProfile.Documents.Count.ToString() + ")";
+            }
+
+            if (dlComments.Items.Count > 0)
+            {
+                rtsProfile.Tabs.FindTabByValue("3").Text = "";
+                rtsProfile.Tabs.FindTabByValue("3").Text += "comments (" + dlComments.Items.Count.ToString() + ")";
+            }
+            if (CurrentProfile.Goals.Count > 0)
+            {
+                rtsProfile.Tabs.FindTabByValue("2").Text = "";
+                rtsProfile.Tabs.FindTabByValue("2").Text += "goals (" + CurrentProfile.Goals.Count.ToString() + ")";
+            }
+            if (CurrentProfile.Reviews.Count > 0)
+            {
+                rtsProfile.Tabs.FindTabByValue("1").Text = "";
+                rtsProfile.Tabs.FindTabByValue("1").Text += "reviews (" + CurrentProfile.Reviews.Count.ToString() + ")";
+            }
+            if (CurrentProfile.Memberships.Count > 0)
+            {
+                rtsProfile.Tabs.FindTabByValue("0").Text = "";
+                rtsProfile.Tabs.FindTabByValue("0").Text += "teams (" + CurrentProfile.Memberships.Count.ToString() + ")";
+            }
+        }
+    }
+}

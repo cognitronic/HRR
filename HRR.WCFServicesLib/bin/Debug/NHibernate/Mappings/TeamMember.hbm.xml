@@ -1,0 +1,17 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="TeamMember" table="TeamMember">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="TeamID" />
+        <property name="PersonID" />
+        <property name="IsActive" />
+        <property name="RecievesNotifications" />
+        <property name="IsManager" />
+        <property name="HasAccess" />
+        <many-to-one name="PersonRef" class="HRR.Core.Domain.Person, HRR.Core" column="PersonID" insert="false" update="false" cascade="none" />
+        <many-to-one name="TeamRef" class="HRR.Core.Domain.Team, HRR.Core" column="TeamID" insert="false" update="false" cascade="none" />
+    </class>
+</hibernate-mapping>

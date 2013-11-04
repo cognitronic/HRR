@@ -1,0 +1,314 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using HRR.Core.Domain;
+using System.Collections.Generic;
+using System.Web.Routing;
+using HRR.Services;
+
+namespace HRR.Web.Routing
+{
+    public class RouteBuilder
+    {
+        public RouteCollection Routes { get; private set; }
+        public RouteBuilder(RouteCollection routes)
+        {
+            Routes = routes;
+        }
+
+        public void Run()
+        {
+
+            Route route = new Route("Overview", new OverviewRouteHandler("~/Default.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Blogs/{id}", new OverviewRouteHandler("~/Blog.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            RouteValueDictionary routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Blogs", new OverviewRouteHandler("~/Blogs.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Polls/{id}", new OverviewRouteHandler("~/Poll.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Polls/New/{id}", new OverviewRouteHandler("~/Poll.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Polls", new OverviewRouteHandler("~/Polls.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Comments/{id}", new OverviewRouteHandler("~/CommentProperties.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Comments/All", new OverviewRouteHandler("~/Comments.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Comments/Flagged", new OverviewRouteHandler("~/Comments.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Comments/Mine", new OverviewRouteHandler("~/Comments.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Comments/Team", new OverviewRouteHandler("~/Comments.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Comments", new OverviewRouteHandler("~/Comments.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reviews/RatingScales/{id}", new OverviewRouteHandler("~/RatingScale.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Reviews/RatingScales/New", new OverviewRouteHandler("~/RatingScale.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reviews/RatingScales", new OverviewRouteHandler("~/RatingScales.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reviews/Templates/{id}", new OverviewRouteHandler("~/ReviewTemplate.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Reviews/Templates/New", new OverviewRouteHandler("~/ReviewTemplate.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reviews/Templates", new OverviewRouteHandler("~/ReviewTemplates.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reviews/{id}", new OverviewRouteHandler("~/Review.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            #region Goals
+            route = new Route("Goals/New/{id}", new OverviewRouteHandler("~/Goal.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            Routes.Add(route);
+
+            route = new Route("Goals/Mine", new OverviewRouteHandler("~/Goals.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Goals/Team", new OverviewRouteHandler("~/Goals.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Goals/Templates/{id}", new OverviewRouteHandler("~/GoalTemplate.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            Routes.Add(route);
+
+            route = new Route("Goals/Templates", new OverviewRouteHandler("~/GoalTemplates.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Goals", new OverviewRouteHandler("~/Goals.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Goals/{id}", new OverviewRouteHandler("~/EditGoal.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            #endregion
+
+            #region Evaluations
+
+            route = new Route("Evaluations/Templates/{id}", new OverviewRouteHandler("~/EvaluationTemplate.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            Routes.Add(route);
+
+            route = new Route("Evaluations/Templates/New", new OverviewRouteHandler("~/EvaluationTemplate.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Evaluations/Templates", new OverviewRouteHandler("~/EvaluationTemplates.aspx"));
+            Routes.Add(route);
+
+            #endregion
+
+            route = new Route("Reviews/New/{id}", new OverviewRouteHandler("~/Review.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            Routes.Add(route);
+
+            route = new Route("Reviews", new OverviewRouteHandler("~/Reviews.aspx"));
+            Routes.Add(route);
+
+            //Messages
+            route = new Route("Messages/New", new OverviewRouteHandler("~/Message.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Messages/{id}", new OverviewRouteHandler("~/Message.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("id", route.Constraints["id"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Messages/Inbox", new OverviewRouteHandler("~/Messages.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Messages/Sent", new OverviewRouteHandler("~/Messages.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Messages/Archived", new OverviewRouteHandler("~/Messages.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Messages/Trash", new OverviewRouteHandler("~/Messages.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Messages", new OverviewRouteHandler("~/Messages.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reports", new OverviewRouteHandler("~/Reports.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Reports/Reviews/{id}", new OverviewRouteHandler("~/Reports.aspx"));
+            route.Constraints = new RouteValueDictionary { { "id", @"^\d+" } };
+            Routes.Add(route);
+
+            route = new Route("People/Inactive", new OverviewRouteHandler("~/InactivePeople.aspx"));
+            Routes.Add(route);
+
+            route = new Route("People/Staff", new OverviewRouteHandler("~/Staff.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Error", new OverviewRouteHandler("~/Error.aspx"));
+            Routes.Add(route);
+
+            route = new Route("PageHelp/{page}", new OverviewRouteHandler("~/PageHelp.aspx"));
+            route.Constraints = new RouteValueDictionary { { "name", @".*" } };
+            Routes.Add(route);
+
+            
+
+            #region Settings
+            
+            route = new Route("Settings/Teams", new OverviewRouteHandler("~/Teams.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Settings/Team/{name}", new OverviewRouteHandler("~/TeamManagement.aspx"));
+            route.Constraints = new RouteValueDictionary { { "name", @".*" } };
+            Routes.Add(route);
+
+            route = new Route("Settings/Account", new OverviewRouteHandler("~/AccountProfile.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Settings/Lists", new OverviewRouteHandler("~/ManagedLists.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Settings/Notifications", new OverviewRouteHandler("~/AccountNotifications.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Settings", new OverviewRouteHandler("~/Settings.aspx"));
+            Routes.Add(route);
+            #endregion
+
+            route = new Route("Videos", new OverviewRouteHandler("~/Videos.aspx"));
+            Routes.Add(route);
+
+            route = new Route("People/Edit", new OverviewRouteHandler("~/EditProfile.aspx"));
+            Routes.Add(route);
+
+            route = new Route("People/New", new OverviewRouteHandler("~/EditProfile.aspx"));
+            Routes.Add(route);
+
+            route = new Route("People/ImportStaff", new OverviewRouteHandler("~/ImportStaff.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Comments.svc/GetCommentListByFilters", new WCFRouteHandler("~/Default.aspx"));
+            Routes.Add(route);
+
+            route = new Route("CommentServices/GetCommentListByFilters", new WCFRouteHandler("~/Default.aspx"));
+            Routes.Add(route);
+
+            route = new Route("People/{email}/{action}", new ProfileRouteHandler("~/EditProfile.aspx"));
+            route.Constraints = new RouteValueDictionary { { "email", @".*" } };
+            route.Constraints = new RouteValueDictionary { { "action", @"^\D+" } };
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("email", route.Constraints["email"]);
+            routeValues.Add("action", route.Constraints["action"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("People/{email}", new ProfileRouteHandler("~/Profile.aspx"));
+            route.Constraints = new RouteValueDictionary { { "email", @".*" } };
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("email", route.Constraints["email"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Help/{name}", new DocumentationRouteHandler("~/Documentation.aspx"));
+            route.Constraints = new RouteValueDictionary { { "name", @".*" } };
+            routeValues = new RouteValueDictionary();
+            routeValues.Add("name", route.Constraints["name"]);
+            route.DataTokens = routeValues;
+            Routes.Add(route);
+
+            route = new Route("Help", new OverviewRouteHandler("~/Documentation.aspx"));
+            Routes.Add(route);
+
+            #region Wizards
+
+            route = new Route("Wizards/NewGoalTemplate", new OverviewRouteHandler("~/Wizards/NewGoalTemplate.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Wizards/NewGoal", new OverviewRouteHandler("~/Wizards/NewGoal.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Wizards/CloseReview", new OverviewRouteHandler("~/Wizards/CloseReview.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Wizards/NewEmployee", new OverviewRouteHandler("~/Wizards/NewEmployee.aspx"));
+            Routes.Add(route);
+            #endregion
+
+            route = new Route("Login", new LoginRouteHandler("~/Login.aspx"));
+            Routes.Add(route);
+
+            route = new Route("Register", new LoginRouteHandler("~/Register.aspx"));
+            Routes.Add(route);
+
+            route = new Route("", new OverviewRouteHandler("~/Default.aspx"));
+            Routes.Add(route);
+
+        }
+       
+    }
+}

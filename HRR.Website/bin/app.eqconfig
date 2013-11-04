@@ -1,0 +1,29 @@
+﻿<config Version="2">
+  <OutputFolder>$(AppDir)</OutputFolder>
+  <ReportFolderNetFull>$(SystemRoot)\Temp\EQATECProfilerLogs</ReportFolderNetFull>
+  <ReportFolderNetCF>\Temp\EQATECProfilerLogs</ReportFolderNetCF>
+  <AutoSnapshot>Main OnStop ApplicationEnd</AutoSnapshot>
+  <TinyMethodAction>Skip</TinyMethodAction>
+  <ServerControlHost />
+  <ServerControlPort>4515</ServerControlPort>
+  <RuntimeModuleLogLevel>Errors</RuntimeModuleLogLevel>
+  <ExcludeFiles>
+    <ExcludeFile>Antlr3.Runtime.dll</ExcludeFile>
+    <ExcludeFile>Iesi.Collections.dll</ExcludeFile>
+    <ExcludeFile>LinFu.DynamicProxy.dll</ExcludeFile>
+    <ExcludeFile>log4net.dll</ExcludeFile>
+    <ExcludeFile>NHibernate.ByteCode.LinFu.dll</ExcludeFile>
+    <ExcludeFile>NHibernate.dll</ExcludeFile>
+    <ExcludeFile>Telerik.Web.UI.Skins.dll</ExcludeFile>
+    <ExcludeFile>Telerik.Web.UI.dll</ExcludeFile>
+    <ExcludeFile>HRR.Persistence.dll</ExcludeFile>
+    <ExcludeFile>HRR.WCFServicesLib.dll</ExcludeFile>
+    <ExcludeFile>HRR.Web.dll</ExcludeFile>
+    <ExcludeFile>HRR.Website.dll</ExcludeFile>
+    <ExcludeFile>IdeaSeed.Core.dll</ExcludeFile>
+    <ExcludeFile>IdeaSeed.Web.dll</ExcludeFile>
+  </ExcludeFiles>
+  <SignActions />
+  <AppType>FullNet</AppType>
+  <InputFolderOK>true</InputFolderOK>
+</config>

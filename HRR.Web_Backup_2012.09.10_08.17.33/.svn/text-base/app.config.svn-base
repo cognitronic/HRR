@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings>
+        <add name="HRR.Web.Properties.Settings.HRR_Performance" connectionString="Data Source=(local)\sql2008;Initial Catalog=HRR_Performance;Persist Security Info=True;User ID=dgs;Password=Fir3al"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>
+</configuration>

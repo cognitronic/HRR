@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Reporting
+END
+CommentsReport.resx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Reporting/CommentsReport.resx
+END
+Review.resx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/Review.resx
+END
+CommentsReport.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Reporting/CommentsReport.Designer.cs
+END
+Review.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/Review.Designer.cs
+END
+CommentsReport.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Web/Reporting/CommentsReport.cs
+END
+GoalMilestones.resx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/GoalMilestones.resx
+END
+Review.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/Review.cs
+END
+GoalCommunication.resx
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/GoalCommunication.resx
+END
+GoalMilestones.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/GoalMilestones.Designer.cs
+END
+GoalMilestones.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/GoalMilestones.cs
+END
+GoalCommunication.Designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/GoalCommunication.Designer.cs
+END
+GoalCommunication.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Web/Reporting/GoalCommunication.cs
+END

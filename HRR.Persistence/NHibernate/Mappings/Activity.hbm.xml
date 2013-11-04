@@ -1,0 +1,18 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="Activity" table="Activity">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="ActivityType" />
+        <property name="AccountID" />
+        <property name="Title" />
+        <property name="URL" />
+        <property name="PerformedBy" />
+        <property name="PerformedFor" />
+        <property name="DateCreated" />
+        <many-to-one name="PerformedByRef" class="HRR.Core.Domain.Person, HRR.Core" column="PerformedBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="PerformedForRef" class="HRR.Core.Domain.Person, HRR.Core" column="PerformedFor" insert="false" update="false" cascade="none" />
+    </class>
+</hibernate-mapping>

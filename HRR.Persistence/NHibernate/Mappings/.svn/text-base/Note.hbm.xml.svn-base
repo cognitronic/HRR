@@ -1,0 +1,20 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+    <class name="Note" table="Note">
+        <id name="ID" column="ID">
+            <generator class="identity"></generator>
+        </id>
+        <property name="EnteredBy" />
+        <property name="DateCreated" />
+        <property name="NoteType" />
+        <property name="Body" />
+        <property name="Title" />
+        <property name="EnteredFor" />
+        <property name="ChangedBy" />
+        <property name="LastUpdated" />
+        <many-to-one name="EnteredByRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredBy" fetch="join" insert="false" update="false" cascade="none" />
+        <many-to-one name="ChangedByRef" class="HRR.Core.Domain.Person, HRR.Core" column="ChangedBy" insert="false" update="false" cascade="none" />
+        <many-to-one name="EnteredForRef" class="HRR.Core.Domain.Person, HRR.Core" column="EnteredFor" fetch="join" insert="false" update="false" cascade="none" />
+    </class>
+</hibernate-mapping>

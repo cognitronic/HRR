@@ -1,0 +1,509 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/DPProjects/!svn/ver/500/trunk/HRR/HRR.Website
+END
+Review.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Review.aspx.cs
+END
+Blogs.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Blogs.aspx
+END
+InactivePeople.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/InactivePeople.aspx
+END
+Goals.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Goals.aspx.designer.cs
+END
+Goals.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Goals.aspx.cs
+END
+EditProfile.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/EditProfile.aspx.cs
+END
+Login.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/500/trunk/HRR/HRR.Website/Login.aspx.designer.cs
+END
+ReviewTemplates.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/ReviewTemplates.aspx
+END
+HRR.Website.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/HRR.Website.csproj
+END
+RatingScales.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DPProjects/!svn/ver/527/trunk/HRR/HRR.Website/RatingScales.aspx.designer.cs
+END
+CommentProperties.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/CommentProperties.aspx.cs
+END
+Reconnect.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DPProjects/!svn/ver/526/trunk/HRR/HRR.Website/Reconnect.aspx.designer.cs
+END
+ReviewTemplates.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/ReviewTemplates.aspx.cs
+END
+Global.asax.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Global.asax.cs
+END
+ForgotPassword.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Website/ForgotPassword.aspx.designer.cs
+END
+Web.Release.config
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/DPProjects/!svn/ver/500/trunk/HRR/HRR.Website/Web.Release.config
+END
+Blog.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Blog.aspx.designer.cs
+END
+Default.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Default.aspx.designer.cs
+END
+People.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/People.aspx.designer.cs
+END
+Reviews.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Reviews.aspx.designer.cs
+END
+Videos.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/DPProjects/!svn/ver/526/trunk/HRR/HRR.Website/Videos.aspx
+END
+GroupManagement.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/GroupManagement.aspx
+END
+Reports.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Reports.aspx
+END
+RatingScale.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/RatingScale.aspx.designer.cs
+END
+Settings.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Settings.aspx
+END
+Review.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Review.aspx
+END
+Profile.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Profile.aspx.designer.cs
+END
+Settings.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Settings.aspx.cs
+END
+Goals.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Goals.aspx
+END
+Web.config
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Web.config
+END
+Login.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/DPProjects/!svn/ver/527/trunk/HRR/HRR.Website/Login.aspx
+END
+EditProfile.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/EditProfile.aspx.designer.cs
+END
+InactivePeople.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/InactivePeople.aspx.cs
+END
+Login.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/527/trunk/HRR/HRR.Website/Login.aspx.cs
+END
+RatingScales.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/RatingScales.aspx
+END
+Reconnect.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DPProjects/!svn/ver/526/trunk/HRR/HRR.Website/Reconnect.aspx
+END
+Global.asax
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/DPProjects/!svn/ver/500/trunk/HRR/HRR.Website/Global.asax
+END
+ForgotPassword.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Website/ForgotPassword.aspx
+END
+Blog.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Blog.aspx
+END
+People.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/People.aspx
+END
+Reviews.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Reviews.aspx
+END
+Default.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Default.aspx
+END
+Reconnect.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/DPProjects/!svn/ver/526/trunk/HRR/HRR.Website/Reconnect.aspx.cs
+END
+Goal.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Goal.aspx.cs
+END
+Default.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Default.aspx.cs
+END
+People.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/People.aspx.cs
+END
+Reviews.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Reviews.aspx.cs
+END
+RatingScale.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/RatingScale.aspx
+END
+HRR.Website.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/HRR.Website.csproj.user
+END
+Profile.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Profile.aspx
+END
+RatingScale.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/RatingScale.aspx.cs
+END
+Profile.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Profile.aspx.cs
+END
+EditProfile.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/EditProfile.aspx
+END
+Blogs.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Blogs.aspx.cs
+END
+CommentProperties.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/CommentProperties.aspx.designer.cs
+END
+RatingScales.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/RatingScales.aspx.cs
+END
+Goal.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Goal.aspx.designer.cs
+END
+ToolsFile.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/ToolsFile.xml
+END
+ForgotPassword.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Website/ForgotPassword.aspx.cs
+END
+Blog.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Blog.aspx.cs
+END
+Comments.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Comments.aspx.designer.cs
+END
+Comments.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Comments.aspx.cs
+END
+Web.Debug.config
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/DPProjects/!svn/ver/500/trunk/HRR/HRR.Website/Web.Debug.config
+END
+Error.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Error.aspx.designer.cs
+END
+Error.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Error.aspx.cs
+END
+ReviewTemplate.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/ReviewTemplate.aspx.designer.cs
+END
+ReviewTemplate.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/ReviewTemplate.aspx.cs
+END
+Reports.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/Reports.aspx.cs
+END
+Comments.svc
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Website/Comments.svc
+END
+Blogs.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Blogs.aspx.designer.cs
+END
+InactivePeople.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/InactivePeople.aspx.designer.cs
+END
+CommentProperties.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/CommentProperties.aspx
+END
+Goal.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Goal.aspx
+END
+ReviewTemplates.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/ReviewTemplates.aspx.designer.cs
+END
+Comments.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Comments.aspx
+END
+Error.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Error.aspx
+END
+Videos.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/526/trunk/HRR/HRR.Website/Videos.aspx.designer.cs
+END
+GroupManagement.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/GroupManagement.aspx.designer.cs
+END
+ReviewTemplate.aspx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/ReviewTemplate.aspx
+END
+Videos.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Website/Videos.aspx.cs
+END
+GroupManagement.aspx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/527/trunk/HRR/HRR.Website/GroupManagement.aspx.cs
+END
+Reports.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Website/Reports.aspx.designer.cs
+END
+Settings.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Settings.aspx.designer.cs
+END
+Review.aspx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Review.aspx.designer.cs
+END

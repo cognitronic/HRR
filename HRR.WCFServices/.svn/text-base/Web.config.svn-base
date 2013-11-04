@@ -1,0 +1,63 @@
+﻿<?xml version="1.0"?>
+<configuration>
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+  </system.web>
+  <system.serviceModel>
+    <diagnostics>
+      <messageLogging logEntireMessage="true" logMalformedMessages="true"
+        logMessagesAtServiceLevel="true" logMessagesAtTransportLevel="true" />
+    </diagnostics>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="Comments" closeTimeout="00:01:00" openTimeout="00:01:00"
+          receiveTimeout="00:10:00" sendTimeout="00:01:00" bypassProxyOnLocal="false"
+          transactionFlow="false" hostNameComparisonMode="StrongWildcard"
+          maxBufferPoolSize="524288" maxReceivedMessageSize="4194304"
+          messageEncoding="Text" textEncoding="utf-8" useDefaultWebProxy="true"
+          allowCookies="false">
+          <readerQuotas maxDepth="32" maxStringContentLength="8192" maxArrayLength="16384"
+            maxBytesPerRead="4096" maxNameTableCharCount="16384" />
+          <reliableSession ordered="true" inactivityTimeout="00:10:00"
+            enabled="false" />
+          <security mode="Message">
+            <transport clientCredentialType="Windows" proxyCredentialType="None"
+              realm="" />
+            <message clientCredentialType="Windows" negotiateServiceCredential="true"
+              algorithmSuite="Default" />
+          </security>
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="Comments"
+        binding="wsHttpBinding" bindingConfiguration="Comments" contract="ServiceReference1.IComments"
+        name="Comments">
+        <identity>
+          <userPrincipalName value="DSchreiber@DataPath.local" />
+        </identity>
+      </endpoint>
+    </client>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior name="CommentsBehavior">
+          <!-- To avoid disclosing metadata information, set the value below to false and remove the metadata endpoint above before deployment -->
+          <serviceMetadata httpGetEnabled="true"/>
+          <!-- To receive exception details in faults for debugging purposes, set the value below to true.  Set to false before deployment to avoid disclosing exception information -->
+          <serviceDebug includeExceptionDetailInFaults="false"/>
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+      <services>
+          <service behaviorConfiguration="CommentsBehavior" name="HRR.WCFServices.Comments">
+              <endpoint address="Comments" binding="wsHttpBinding"
+                  name="Comments" contract="HRR.WCFServices.IComments" />
+          </service>
+      </services>
+  </system.serviceModel>
+ <system.webServer>
+    <modules runAllManagedModulesForAllRequests="true"/>
+  </system.webServer>
+  
+</configuration>

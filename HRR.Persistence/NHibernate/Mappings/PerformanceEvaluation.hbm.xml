@@ -1,0 +1,28 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+  <class name="PerformanceEvaluation" table="PerformanceEvaluation">
+    <id name="ID" column="ID">
+      <generator class="identity"></generator>
+    </id>
+    <property name="PerformanceEvalutaionTemplateID" />
+    <property name="IsGoal" />
+    <property name="GoalID" />
+    <property name="AccountID" />
+    <property name="Title" />
+    <property name="Description" />
+    <property name="Instructions" />
+    <property name="DueDate" />
+    <property name="Score" />
+    <property name="Evaluatee" />
+    <property name="Completed" />
+    <property name="EnteredBy" />
+    <property name="ChangedBy" />
+    <property name="DateCreated" />
+    <property name="LastUpdated" />
+    <bag name="Responses" table="PerformanceEvaluationResponse" generic="true" inverse="true" cascade="none">
+      <key column="PerformanceEvaluationID"/>
+      <one-to-many  class="HRR.Core.Domain.PerformanceEvaluationResponse, HRR.Core" />
+    </bag>
+  </class>
+</hibernate-mapping>

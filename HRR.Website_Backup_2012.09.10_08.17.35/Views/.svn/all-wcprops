@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/DPProjects/!svn/ver/507/trunk/HRR/HRR.Website/Views
+END
+ReviewTemplateListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/DPProjects/!svn/ver/526/trunk/HRR/HRR.Website/Views/ReviewTemplateListView.ascx
+END
+AlertsListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/Views/AlertsListView.ascx.designer.cs
+END
+AlertsListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/AlertsListView.ascx.cs
+END
+ReviewTemplateListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/DPProjects/!svn/ver/511/trunk/HRR/HRR.Website/Views/ReviewTemplateListView.ascx.designer.cs
+END
+ReviewTemplateListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/ReviewTemplateListView.ascx.cs
+END
+ReviewListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/ReviewListView.ascx
+END
+CommentListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/CommentListView.ascx
+END
+ReviewListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/DPProjects/!svn/ver/527/trunk/HRR/HRR.Website/Views/ReviewListView.ascx.designer.cs
+END
+ReviewGoalListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/ReviewGoalListView.ascx
+END
+ReviewListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/ReviewListView.ascx.cs
+END
+CommentListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Views/CommentListView.ascx.designer.cs
+END
+UpcomingEventsListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/UpcomingEventsListView.ascx
+END
+CommentListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/CommentListView.ascx.cs
+END
+ReviewGoalListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Views/ReviewGoalListView.ascx.designer.cs
+END
+ReviewGoalListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Views/ReviewGoalListView.ascx.cs
+END
+UpcomingEventsListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/Views/UpcomingEventsListView.ascx.designer.cs
+END
+UpcomingEventsListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/UpcomingEventsListView.ascx.cs
+END
+BreadCrumbView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/BreadCrumbView.ascx
+END
+BlogFeedView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/BlogFeedView.ascx
+END
+BreadCrumbView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/BreadCrumbView.ascx.designer.cs
+END
+BlogFeedView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/BlogFeedView.ascx.designer.cs
+END
+BreadCrumbView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/BreadCrumbView.ascx.cs
+END
+BlogFeedView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/BlogFeedView.ascx.cs
+END
+GoalListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/GoalListView.ascx
+END
+ActivityFeedView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/ActivityFeedView.ascx
+END
+GoalListView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/DPProjects/!svn/ver/510/trunk/HRR/HRR.Website/Views/GoalListView.ascx.designer.cs
+END
+GoalListView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/GoalListView.ascx.cs
+END
+ActivityFeedView.ascx.designer.cs
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/DPProjects/!svn/ver/514/trunk/HRR/HRR.Website/Views/ActivityFeedView.ascx.designer.cs
+END
+ActivityFeedView.ascx.cs
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/ActivityFeedView.ascx.cs
+END
+AlertsListView.ascx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/DPProjects/!svn/ver/528/trunk/HRR/HRR.Website/Views/AlertsListView.ascx
+END

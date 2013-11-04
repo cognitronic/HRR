@@ -1,0 +1,21 @@
+﻿<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="HRR.Core"
+namespace="HRR.Core.Domain">
+  <class name="PerformanceEvaluationTemplateQuestion" table="PerformanceEvaluationTemplateQuestion">
+    <id name="ID" column="ID">
+      <generator class="identity"></generator>
+    </id>
+    <property name="PerformanceEvaluationTemplateID" />
+    <property name="Question" />
+    <property name="IsSlider" />
+    <property name="EnteredBy" />
+    <property name="ChangedBy" />
+    <property name="DateCreated" />
+    <property name="LastUpdated" />
+    <many-to-one name="PerformanceEvaluationTemplateRef" class="HRR.Core.Domain.PerformanceEvaluationTemplate, HRR.Core" column="PerformanceEvaluationTemplateID" insert="false" update="false" cascade="none" />
+    <bag name="SliderValues" table="PerformanceEvaluationSliderValue" generic="true" inverse="true" cascade="none">
+      <key column="PerformanceEvaluationTemplateQuestionID"/>
+      <one-to-many  class="HRR.Core.Domain.PerformanceEvaluationSliderValue, HRR.Core" />
+    </bag>
+  </class>
+</hibernate-mapping>

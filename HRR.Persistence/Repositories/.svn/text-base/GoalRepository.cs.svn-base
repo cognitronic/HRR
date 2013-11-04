@@ -1,0 +1,102 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Criterion;
+using IdeaSeed.Core.Data.NHibernate;
+using IdeaSeed.Core.Data;
+using HRR.Core.Domain;
+using HRR.Core.Security;
+using HRR.Core.Domain.Interfaces;
+
+namespace HRR.Persistence.Repositories
+{
+    public class GoalRepository : BaseRepository<Goal, int>
+    {
+        public IList<Goal> GetByEnteredBy(int enteredby, int statusid)
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Eq("EnteredBy", enteredby))
+                .Add(Expression.Eq("StatusID", statusid))
+                .List<Goal>();
+        }
+
+        public IList<Goal> GetByEnteredFor(int enteredfor)
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Le("StatusID", (int)GoalStatus.DECLINED))
+                .Add(Expression.Eq("EnteredFor", enteredfor))
+                .List<Goal>();
+        }
+
+        public IList<Goal> GetByDueDate(DateTime duedate)
+        {
+            if (SecurityContextManager.Current != null)
+            {
+                switch (((Person)SecurityContextManager.Current.CurrentUser).RoleID)
+                {
+                    case (int)SecurityRole.EMPLOYEE:
+                    case (int)SecurityRole.READ_ONLY:
+                        return Session.CreateCriteria<Goal>()
+                        .Add(Expression.Eq("EnteredFor", SecurityContextManager.Current.CurrentUser.ID))
+                        .Add(Expression.Eq("AccountID", ((Person)SecurityContextManager.Current.CurrentUser).AccountID))
+                        .Add(Expression.Between("DueDate", DateTime.Now, duedate))
+                        .Add(Expression.Or(
+                         Expression.Eq("StatusID", (int)GoalStatus.ACCEPTED),
+                         Expression.Eq("StatusID", (int)GoalStatus.AWAITING_ACCEPTANCE)))
+                        .List<Goal>();
+                    default:
+                        return Session.CreateCriteria<Goal>()
+                            .Add(Expression.Between("DueDate", DateTime.Now, duedate))
+                            .Add(Expression.Eq("AccountID", ((Person)SecurityContextManager.Current.CurrentUser).AccountID))
+                             .Add(Expression.Or(
+                             Expression.Eq("StatusID", (int)GoalStatus.ACCEPTED),
+                             Expression.Eq("StatusID", (int)GoalStatus.AWAITING_ACCEPTANCE)))
+                            .List<Goal>();
+                }
+            }
+            return null;
+        }
+
+        public IList<Goal> GetByReviewID(int reviewID)
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Eq("ReviewID", reviewID))
+                .List<Goal>();
+        }
+
+        public IList<Goal> GetByStatusID(int statusid)
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Eq("StatusID", statusid))
+                .List<Goal>();
+        }
+
+        public IList<Goal> GetByAllActiveEmployeeID(int enteredfor)
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Le("StatusID", (int)GoalStatus.DECLINED))
+                .Add(Expression.Eq("EnteredFor", enteredfor))
+                .List<Goal>();
+        }
+
+        public IList<Goal> GetActiveManagersList(int userid)
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Le("StatusID", (int)GoalStatus.DECLINED))
+                .Add(Expression.Or(
+                 Expression.Eq("EnteredFor", userid),
+                 Expression.Eq("EnteredBy", userid)))
+                .List<Goal>();
+        }
+
+        public IList<Goal> GetByAllActive()
+        {
+            return Session.CreateCriteria<Goal>()
+                .Add(Expression.Le("StatusID", (int)GoalStatus.DECLINED))
+                .List<Goal>();
+        }
+    }
+}

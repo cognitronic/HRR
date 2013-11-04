@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using HRR.Core.Domain.Interfaces;
+using System.Runtime.Serialization;
+using Newtonsoft.Json;
+
+namespace HRR.Core.Domain
+{
+    [Serializable]
+    [DataContract]
+    public class Goal : IGoal, IAlert
+    {
+        [DataMember]
+        public virtual int ID { get; set; }
+        [DataMember]
+        public virtual string Name { get; set; }
+        public virtual ItemType TypeOfItem { get; set; }
+        public virtual object ItemReference { get; set; }
+        [DataMember]
+        public virtual int EnteredBy { get; set; }
+        [DataMember]
+        public virtual int ChangedBy { get; set; }
+        [DataMember]
+        public virtual DateTime DateCreated { get; set; }
+        [DataMember]
+        public virtual DateTime LastUpdated { get; set; }
+        [DataMember]
+        public virtual string Title { get; set; }
+        [DataMember]
+        public virtual string Description { get; set; }
+        [DataMember]
+        public virtual int EnteredFor { get; set; }
+        [DataMember]
+        public virtual bool IsApproved { get; set; }
+        [DataMember]
+        public virtual bool IsAccepted { get; set; }
+        [DataMember]
+        public virtual bool IsTemplate { get; set; }
+        [DataMember]
+        public virtual DateTime DueDate { get; set; }
+        [DataMember]
+        public virtual int Score { get; set; }
+        [DataMember]
+        public virtual int GoalType { get; set; }
+        [DataMember]
+        public virtual int Progress { get; set; }
+        [DataMember]
+        public virtual int StatusID { get; set; }
+        [DataMember]
+        public virtual int ReviewID { get; set; }
+        [DataMember]
+        public virtual string ManagerEvaluation { get; set; }
+        [DataMember]
+        public virtual string EmployeeEvaluation { get; set; }
+        [DataMember]
+        public virtual int Weight { get; set; }
+        [DataMember]
+        public virtual Person EnteredByRef { get; set; }
+        [DataMember]
+        public virtual Person EnteredForRef { get; set; }
+        private IList<GoalMilestone> _milestones = new List<GoalMilestone>();
+        [DataMember]
+        public virtual IList<GoalMilestone> Milestones { get { return _milestones; } set { _milestones = value; } }
+        private IList<GoalManager> _managers = new List<GoalManager>();
+        [DataMember]
+        public virtual IList<GoalManager> Managers { get { return _managers; } set { _managers = value; } }
+        private IList<GoalCommunication> _communication = new List<GoalCommunication>();
+        [DataMember]
+        public virtual IList<GoalCommunication> Communication { get { return _communication; } set { _communication = value; } }
+        public virtual AlertType ItemType { get; set; }
+        [DataMember]
+        public virtual int AccountID { get; set; }
+
+        public Goal()
+        {
+            this.ItemType = AlertType.GOAL;
+            this.TypeOfItem = Domain.ItemType.GOAL;
+            this.Name = this.Title;
+        }
+
+        public virtual string ToJSON()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}

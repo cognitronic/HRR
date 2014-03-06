@@ -69,5 +69,13 @@ namespace HRR.Services
         }
 
         #endregion
+
+        #region Evaluations
+
+        public PerformanceEvaluation GetEvaluationByID(int id)
+        {
+            return new PerformanceEvaluationRepository().GetByID(id, false);
+        }
+        #endregion
     }
 }

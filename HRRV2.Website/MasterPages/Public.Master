@@ -1,0 +1,119 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="HRRV2.Website.MasterPages.Public" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <asp:PlaceHolder ID="pcHead" runat="server">     
+        <%: Styles.Render("~/Content/css") %>
+    <link href="/Content/ui-lightness/jquery-ui-1.9.0.custom.css" rel="stylesheet" />
+          <%: Scripts.Render("~/bundles/modernizr") %>
+         <%: Scripts.Render("~/bundles/jquery") %>
+        <%-- <%: Scripts.Render("~/bundles/jqueryui") %>--%>
+         <%: Scripts.Render("~/bundles/jqueryval") %>
+        <%: Scripts.Render("~/bundles/WebFormsJs") %>
+    </asp:PlaceHolder>  
+    <link rel="stylesheet" href="/Content/jquery.qtip.min.css" type="text/css"/>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:radscriptmanager 
+        ID="RadScriptManager1" 
+        runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+            </Scripts>
+        </telerik:radscriptmanager>
+        <telerik:radajaxmanager 
+        ID="RadAjaxManager1" 
+        runat="server">
+        </telerik:radajaxmanager>
+        <section id="topnav">
+            <div id="top">
+                <div class="top-wrapper">
+                    <a href="/" title="">
+                        <img src="/images/logo.png" class="logo" alt="" />
+                    </a>
+                    <ul class="topnav">
+                        <li class="topuser">
+                            <a title="" data-toggle="dropdown">
+                                <telerik:RadBinaryImage ID="imgCurrentUserAvatar"
+                                runat="server"
+                                Width="25px"
+                                Height="25px"/>
+                                <span>
+                                    <idea:Label runat="server" ID="lbName" />
+                                </span>
+                                <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#" title="My Profile">
+                                        <span class="user-profile"></span>My profile
+                                    </a>
+                                </li>
+                                <li>
+                                    
+                                    <a href="#" title="">
+                                        <span class="user-logout"></span>Logout
+                                    </a>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <%--<li>
+                            <a href="#" title="">
+                                <b class="settings"></b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" title="">
+                                <b class="mail"></b>
+                            </a>
+                        </li>
+                        <li class="search">
+                            <a title="">
+                                <b class="search"></b>
+                            </a>
+                            <form class="top-search" action="#">
+                                <input type="text" placeholder="Search..." />
+                                <input type="submit" value="" />
+                            </form>
+                        </li>--%>
+                        <li class="sidebar-button">
+                            <a href="#" title="">
+                                <b class="responsive-nav"></b>
+                            </a>
+                        </li>
+                        <li>
+                            <idea:LinkButton
+                                runat="server"
+                                ID="lbLogout"
+                                OnClick="LogoutClicked">
+                                <b class="logout"></b>
+                            </idea:LinkButton>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <div id="mainwrapper" class="wrapper">
+
+	        
+            <!-- Main content -->
+            <div class="content">
+                <div id="body">
+                    <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                    <section class="content-wrapper main-content clear-fix">
+                        <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                    </section>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

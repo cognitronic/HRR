@@ -101,3 +101,7 @@ C:\Projects\HRR\HRR.Website\bin\System.Web.Http.xml
 C:\Projects\HRR\HRR.Website\bin\System.Net.Http.Formatting.xml
 C:\Projects\HRR\HRR.Website\bin\Telerik.Web.UI.dll
 C:\Projects\HRR\HRR.Website\bin\Telerik.Web.UI.Skins.dll
+C:\Projects\HRR\HRR.Website\bin\NHibernate\Mappings\Team.hbm.xml
+C:\Projects\HRR\HRR.Website\bin\NHibernate\Mappings\TeamMember.hbm.xml
+C:\Projects\HRR\HRR.Website\bin\NHibernate\Mappings\GoalManager.hbm.xml
+C:\Projects\HRR\HRR.Website\bin\NHibernate\Mappings\ReviewManager.hbm.xml

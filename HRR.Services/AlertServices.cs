@@ -19,17 +19,17 @@ namespace HRR.Services
         public IList<IAlert> GetAlertsByDueDate(DateTime duedate)
         {
             var list = new List<IAlert>();
-            foreach(var g in new GoalServices().GetByDueDate(duedate.AddDays(9)))
+            foreach(var g in new GoalServices().GetByDueDate(duedate.AddDays(9)).Where(o => o.EnteredForRef.IsActive == true))
             {
                 list.Add(g);
             }
 
-            foreach (var m in new GoalMilestoneServices().GetByDueDate(duedate))
+            foreach (var m in new GoalMilestoneServices().GetByDueDate(duedate).Where(o => o.EnteredForRef.IsActive == true))
             {
                 list.Add(m);
             }
 
-            foreach (var r in new ReviewServices().GetByDueDate(duedate.AddDays(30)))
+            foreach (var r in new ReviewServices().GetByDueDate(duedate.AddDays(30)).Where(o => o.EnteredForRef.IsActive == true))
             {
                 list.Add(r);
             }
